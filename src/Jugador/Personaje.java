@@ -50,4 +50,13 @@ public class Personaje extends Entidad{
 		this.sprite = sprite;
 	}
 	
+	public void moverDerecha() {
+		if(labelPersonaje.getX()<688)
+			labelPersonaje.setBounds(labelPersonaje.getX()+getVelocidad(),labelPersonaje.getY(), 199, 150);
+	}
+	
+	public void moverIzquierda() {
+		if((labelPersonaje.getX()>-32))
+			labelPersonaje.setBounds(labelPersonaje.getX()-getVelocidad(),labelPersonaje.getY(), 199, 150);
+	}
 }
