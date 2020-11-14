@@ -1,5 +1,6 @@
 package Jugador;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import Juego.Entidad;
@@ -10,12 +11,14 @@ public class Personaje extends Entidad{
 	protected int cargaViral;
 	protected int velocidad;
 	protected String sprite;
+	protected String direccion;
 	
 	public Personaje(JLabel label) {
 		labelPersonaje=label;
 		cargaViral=0;
 		velocidad=10;
 		sprite="Sprites\\Personaje e Infectados\\personaje.gif";
+		direccion = "Derecha";
 	}
 
 	public JLabel getLabelPersonaje() {
@@ -51,12 +54,26 @@ public class Personaje extends Entidad{
 	}
 	
 	public void moverDerecha() {
-		if(labelPersonaje.getX()<688)
+		if(labelPersonaje.getX()<688) {
+			labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDerecha.gif"));
 			labelPersonaje.setBounds(labelPersonaje.getX()+getVelocidad(),labelPersonaje.getY(), 199, 150);
+			direccion = "Derecha";
+		}
 	}
 	
 	public void moverIzquierda() {
-		if((labelPersonaje.getX()>-32))
+		if((labelPersonaje.getX()>-32)) {
+			labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeIzquierda.gif"));
 			labelPersonaje.setBounds(labelPersonaje.getX()-getVelocidad(),labelPersonaje.getY(), 199, 150);
+			direccion = "Izquierda";
+		}
+	}
+	
+	public void quieto() {
+		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif"));		
+	}
+
+	public void disparar() {
+		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));			
 	}
 }

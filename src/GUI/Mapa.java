@@ -99,12 +99,15 @@ public class Mapa extends JFrame {
         		infectadoBeta.mover();
         		infectadoAlfa.mover();
         	}
+        	if(arg0.getKeyCode() == KeyEvent.VK_SPACE) {
+        		personaje.disparar();
+        	}
         	
         }
 
         @Override
         public void keyReleased(KeyEvent arg0) {
-            // TODO Auto-generated method stub
+        	personaje.quieto();
 
         }
 
