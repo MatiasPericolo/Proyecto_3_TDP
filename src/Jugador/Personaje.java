@@ -3,6 +3,7 @@ package Jugador;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Hilos.HiloControles;
 import Juego.Entidad;
 
 public class Personaje extends Entidad{
@@ -12,13 +13,18 @@ public class Personaje extends Entidad{
 	protected int velocidad;
 	protected String sprite;
 	protected String direccion;
+	protected HiloControles control;
+	protected boolean quieto;
 	
 	public Personaje(JLabel label) {
 		labelPersonaje=label;
+		control = new HiloControles(label);
+		control.start();
 		cargaViral=0;
 		velocidad=10;
 		sprite="Sprites\\Personaje e Infectados\\personaje.gif";
 		direccion = "Derecha";
+		quieto = true;
 	}
 
 	public JLabel getLabelPersonaje() {
@@ -55,25 +61,40 @@ public class Personaje extends Entidad{
 	
 	public void moverDerecha() {
 		if(labelPersonaje.getX()<688) {
+			if(quieto){
+				labelPersonaje.setBounds(labelPersonaje.getX()+velocidad,labelPersonaje.getY(), 199, 150);
+				quieto = false;
+			}
 			labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDerecha.gif"));
-			labelPersonaje.setBounds(labelPersonaje.getX()+getVelocidad(),labelPersonaje.getY(), 199, 150);
+			control.setVelocidad(velocidad);
 			direccion = "Derecha";
+		} else {
+			quieto();
 		}
 	}
 	
 	public void moverIzquierda() {
 		if((labelPersonaje.getX()>-32)) {
+			if(quieto){
+				labelPersonaje.setBounds(labelPersonaje.getX()-velocidad,labelPersonaje.getY(), 199, 150);
+				quieto = false;
+			}
 			labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeIzquierda.gif"));
-			labelPersonaje.setBounds(labelPersonaje.getX()-getVelocidad(),labelPersonaje.getY(), 199, 150);
+			control.setVelocidad(-velocidad);
 			direccion = "Izquierda";
+		} else {
+			quieto();
 		}
 	}
 	
 	public void quieto() {
+		quieto = true;
+		control.setVelocidad(0);
 		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif"));		
 	}
 
 	public void disparar() {
-		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));			
+		quieto();
+		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));	
 	}
 }

@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import GUI.Mapa;
 import Infectados.Alfa;
+import Infectados.Beta;
 import Infectados.Infectado;
 
 public class Juego {
@@ -20,9 +21,14 @@ public class Juego {
 	}
 	
 	public void generarEnemigoAleatorio() {
-		//Crear un if para que elija al azar entre Alfa y Beta
-		Alfa infectadoAux=new Alfa(gui.crearLabelEnemigo());
-		
+		Infectado infectadoAux;
+		int random = (int) Math.floor(Math.random()*2);
+		System.out.println(random);
+		if(random == 0) {
+			infectadoAux =new Alfa(gui.crearLabelEnemigo());
+		} else {
+			infectadoAux =new Beta(gui.crearLabelEnemigo());
+		}
 		infectadoAux.getLabelInfectado().setBounds(infectadoAux.getCoordenadaX(), 0, 199, 150);
 		infectadoAux.getLabelInfectado().setIcon(new ImageIcon(infectadoAux.getSprite()));
 		gui.getContentPane().add(infectadoAux.getLabelInfectado(),0);
