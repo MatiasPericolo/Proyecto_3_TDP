@@ -20,8 +20,6 @@ public class Mapa extends JFrame {
 	protected Nivel nivelActual;
 	
 	protected Juego juego;
-	
-	private static final Mapa mapa=new Mapa();
 
 	/**
 	 * Launch the application.
@@ -36,7 +34,7 @@ public class Mapa extends JFrame {
 	public Mapa() {
 		
 		juego=new Juego(this);
-		nivelActual=new Nivel(3,this);
+		nivelActual=new Nivel(3,juego);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 0, 810, 1000);
@@ -58,12 +56,7 @@ public class Mapa extends JFrame {
 		
 		setVisible(true);
 		
-		juego.generarEnemigoAleatorio();
 		nivelActual.iniciarJuego();
-	}
-	
-	public static Mapa getGUI() {
-		return mapa;	
 	}
 	
 	public JLabel crearLabelEnemigo() {

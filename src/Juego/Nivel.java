@@ -9,18 +9,18 @@ public class Nivel {
 	protected int cantidadInfectados;
 	protected HiloCreadorInfectados hiloCreador;
 	protected HiloMoverInfectados hiloMovimiento;
-	protected Mapa gui;
+	protected Juego juego;
 	
-	public Nivel(int cantInfectados,Mapa gui) {
-		this.gui=gui;
+	public Nivel(int cantInfectados,Juego juego) {
+		this.juego=juego;
 		cantidadInfectados=cantInfectados;
-		hiloCreador=new HiloCreadorInfectados(gui.getJuego(),cantidadInfectados);
-		hiloMovimiento=new HiloMoverInfectados(gui.getJuego());
+		hiloCreador=new HiloCreadorInfectados(juego,cantidadInfectados);
+		hiloMovimiento=new HiloMoverInfectados(juego);
 	}
 	
 	public void iniciarJuego() {
 		
-		hiloCreador.run();
-		//hiloMovimiento.run();
+		hiloCreador.start();
+		hiloMovimiento.start();
 	}
 }

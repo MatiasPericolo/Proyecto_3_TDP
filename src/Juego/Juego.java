@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 import GUI.Mapa;
 import Infectados.Alfa;
@@ -22,7 +21,6 @@ public class Juego {
 	
 	public void generarEnemigoAleatorio() {
 		//Crear un if para que elija al azar entre Alfa y Beta
-		
 		Alfa infectadoAux=new Alfa(gui.crearLabelEnemigo());
 		
 		infectadoAux.getLabelInfectado().setBounds(infectadoAux.getCoordenadaX(), 0, 199, 150);

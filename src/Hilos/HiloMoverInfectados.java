@@ -2,7 +2,7 @@ package Hilos;
 
 import Juego.Juego;
 
-public class HiloMoverInfectados {
+public class HiloMoverInfectados extends Thread {
 
 	private Juego juego;
 	protected boolean run;
