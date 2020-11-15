@@ -8,6 +8,8 @@ import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Hilos.HiloControles;
 import Juego.Entidad;
+import Visitor.Visitor;
+import Visitor.VisitorPersonaje;
 
 public class Personaje extends Entidad{
 
@@ -20,6 +22,7 @@ public class Personaje extends Entidad{
 	protected ArmaSanitaria arma;
 	
 	public Personaje(JLabel label) {
+		visitor=new VisitorPersonaje();
 		tipo="Personaje";
 		this.label=label;
 		control = new HiloControles(label);
@@ -103,6 +106,10 @@ public class Personaje extends Entidad{
 		
 	}
 
+	public void recibir(Visitor visitor) {
+		visitor.visitarPersonaje(this);
+	}
+	
 	public boolean esInfectado() {
 		return false;
 	}

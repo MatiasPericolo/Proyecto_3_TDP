@@ -2,11 +2,14 @@ package Juego;
 
 import javax.swing.JLabel;
 
+import Visitor.Visitor;
+
 public abstract class Entidad {
 
 	protected JLabel label;
 	protected String sprite;
 	protected String tipo;
+	protected Visitor visitor;
 	
 	public abstract void mover();
 	
@@ -33,4 +36,14 @@ public abstract class Entidad {
 	public void setSprite(String sprite) {
 		this.sprite = sprite;
 	}
+	
+	public Visitor getVisitor() {
+		return visitor;
+	}
+
+	public void setVisitor(Visitor visitor) {
+		this.visitor = visitor;
+	}
+	
+	public abstract void recibir(Visitor visitor);
 }

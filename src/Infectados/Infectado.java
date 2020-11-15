@@ -6,6 +6,8 @@ import Arma.ArmaInfectado;
 import Disparos.Disparo;
 import Disparos.DisparoInfectado;
 import Juego.Entidad;
+import Visitor.Visitor;
+import Visitor.VisitorInfectado;
 
 public class Infectado extends Entidad{
 	
@@ -16,6 +18,7 @@ public class Infectado extends Entidad{
 	
 	public Infectado(JLabel label) {
 		tipo="Infectado";
+		visitor=new VisitorInfectado();
 		cargaViral=100;
 		coordenadaX=((int) (Math.random()*720))-32;
 		this.label=label;
@@ -55,6 +58,7 @@ public class Infectado extends Entidad{
 		
 	}
 
-	
-	
+	public void recibir(Visitor visitor) {
+		visitor.visitarInfectado(this);
+	}
 }

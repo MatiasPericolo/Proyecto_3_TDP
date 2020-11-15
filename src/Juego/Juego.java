@@ -89,7 +89,7 @@ public class Juego {
 		for(int i=0;i<listaEntidades.size();i++) {
 			for(int j=i;j<listaEntidades.size();j++) {
 				if(colisionan(listaEntidades.get(i).getLabel(),listaEntidades.get(j).getLabel()) && listaEntidades.get(i).getLabel()!=listaEntidades.get(j).getLabel())
-					System.out.println("Colisiona "+listaEntidades.get(i).getSprite()+" con "+listaEntidades.get(j).getSprite()+".");
+					listaEntidades.get(j).recibir(listaEntidades.get(i).getVisitor());
 			}
 		}
 	}
