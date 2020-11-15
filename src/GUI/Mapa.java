@@ -25,16 +25,16 @@ public class Mapa extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Mapa frame = new Mapa();
+		Mapa frame = new Mapa(3);
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Mapa() {
+	public Mapa(int nivel) {
 		
 		juego=new Juego(this);
-		nivelActual=new Nivel(3,juego);
+		nivelActual=new Nivel(nivel,juego);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 0, 810, 1000);
@@ -48,7 +48,10 @@ public class Mapa extends JFrame {
 		getContentPane().add(labelPersonaje);
 		
 		mapaImagen=new JLabel();
-		mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_1.jpg"));
+		if(nivel==10)
+			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_1.jpg"));
+		else
+			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_2.jpg"));
 		mapaImagen.setBounds(0, 0, 800, 1000);
 		getContentPane().add(mapaImagen);
 		
