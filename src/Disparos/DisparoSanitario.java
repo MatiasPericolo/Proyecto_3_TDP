@@ -1,9 +1,13 @@
 package Disparos;
 
+import Visitor.Visitor;
+import Visitor.VisitorDisparoSanitario;
+
 public class DisparoSanitario extends Disparo{
 	
 	public DisparoSanitario(int x, int y,int vel, int daño,String img) {
 		super(x,y,vel,daño,img);
+		visitor=new VisitorDisparoSanitario();
 		tipo="DisparoSanitario";
 	}
 	
@@ -15,4 +19,7 @@ public class DisparoSanitario extends Disparo{
 		label.setVisible(false);
 	}
 	
+	public void recibir(Visitor visitor) {
+		visitor.visitarDisparoSanitario(this);
+	}
 }

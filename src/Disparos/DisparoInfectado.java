@@ -1,5 +1,8 @@
 package Disparos;
 
+import Visitor.Visitor;
+import Visitor.VisitorDisparoInfectado;
+
 public class DisparoInfectado extends Disparo{
 
 	protected int alcance;
@@ -7,6 +10,7 @@ public class DisparoInfectado extends Disparo{
 	
 	public DisparoInfectado(int x, int y,int vel, int daño,String img,int al) {
 		super(x,y,vel,daño,img);
+		visitor=new VisitorDisparoInfectado();
 		tipo="DisparoInfectado";
 		alcance=al;
 		recorrido=0;
@@ -24,4 +28,7 @@ public class DisparoInfectado extends Disparo{
 		label.setVisible(false);
 	}
 	
+	public void recibir(Visitor visitor) {
+		visitor.visitarDisparoInfectado(this);
+	}
 }
