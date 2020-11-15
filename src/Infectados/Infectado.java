@@ -18,7 +18,7 @@ public class Infectado extends Entidad{
 	
 	public Infectado(JLabel label) {
 		tipo="Infectado";
-		visitor=new VisitorInfectado();
+		visitor=new VisitorInfectado(this);
 		cargaViral=100;
 		coordenadaX=((int) (Math.random()*720))-32;
 		this.label=label;
@@ -52,6 +52,10 @@ public class Infectado extends Entidad{
 		DisparoInfectado disparo=arma.crearDisparo(label.getX()+(label.getHeight()/2),label.getY());
 		
 		return disparo;
+	}
+	
+	public void destruir() {
+		
 	}
 	
 	public void mover() {

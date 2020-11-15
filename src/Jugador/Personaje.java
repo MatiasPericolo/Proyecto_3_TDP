@@ -22,7 +22,7 @@ public class Personaje extends Entidad{
 	protected ArmaSanitaria arma;
 	
 	public Personaje(JLabel label) {
-		visitor=new VisitorPersonaje();
+		visitor=new VisitorPersonaje(this);
 		tipo="Personaje";
 		this.label=label;
 		control = new HiloControles(label);
@@ -102,15 +102,20 @@ public class Personaje extends Entidad{
 	}
 
 	public void mover() {
-		// TODO Auto-generated method stub
-		
+		System.out.println();
+	}
+	
+	public void setDaño(int daño) {
+		cargaViral +=daño;	
+		System.out.println(cargaViral);
 	}
 
 	public void recibir(Visitor visitor) {
 		visitor.visitarPersonaje(this);
 	}
 	
-	public boolean esInfectado() {
-		return false;
+	public void destruir() {
+		
 	}
+	
 }

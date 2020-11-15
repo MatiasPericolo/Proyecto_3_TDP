@@ -90,6 +90,19 @@ public class Juego {
 			for(int j=i;j<listaEntidades.size();j++) {
 				if(colisionan(listaEntidades.get(i).getLabel(),listaEntidades.get(j).getLabel()) && listaEntidades.get(i).getLabel()!=listaEntidades.get(j).getLabel())
 					listaEntidades.get(j).recibir(listaEntidades.get(i).getVisitor());
+				if(!listaEntidades.get(i).getLabel().isVisible()) {
+					if(listaEntidades.get(i).getTipo() == "Infectado") {
+						//Generar premio
+					}
+												
+					listaEntidades.remove(i);
+				}
+				if(!listaEntidades.get(j).getLabel().isVisible()) {
+					if(listaEntidades.get(j).getTipo() == "Infectado") {
+						//Generar premio
+					}
+					listaEntidades.remove(j);
+				}
 			}
 		}
 	}

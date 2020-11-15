@@ -3,12 +3,23 @@ package Visitor;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Infectados.Infectado;
+import Juego.Entidad;
 import Jugador.Personaje;
 
 public class VisitorPersonaje extends Visitor{
+	
+
+	public VisitorPersonaje(Personaje e) {
+		super(e);
+	}
 
 	public void visitarInfectado(Infectado infectado) {
-		System.out.println("Personaje visita Infectado");
+		/*
+		Infectado aux = (Infectado) miEntidad;
+		personaje.setDaño(100);
+		System.out.println(personaje.getCargaViral());
+		*/
+		Personaje aux = (Personaje) miEntidad;
 		
 	}
 
@@ -17,7 +28,6 @@ public class VisitorPersonaje extends Visitor{
 	}
 
 	public void visitarDisparoInfectado(DisparoInfectado disparo) {
-		System.out.println("Personaje visita un Disparo");
 		
 	}
 

@@ -12,6 +12,7 @@ public abstract class Entidad {
 	protected Visitor visitor;
 	
 	public abstract void mover();
+	public abstract void destruir();
 	
 	public String getTipo() {
 		return tipo;
