@@ -11,7 +11,6 @@ public class Infectado extends Entidad{
 	
 	protected int cargaViral;
 	protected int velocidad;
-	protected String sprite;
 	protected int coordenadaX;
 	protected ArmaInfectado arma;
 	
@@ -43,14 +42,6 @@ public class Infectado extends Entidad{
 
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
-	}
-
-	public String getSprite() {
-		return sprite;
-	}
-
-	public void setSprite(String sprite) {
-		this.sprite = sprite;
 	}
 
 	public DisparoInfectado disparar() {

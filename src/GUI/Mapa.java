@@ -25,7 +25,7 @@ public class Mapa extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		Mapa frame = new Mapa(3);
+		Mapa frame = new Mapa(1);
 	}
 
 	/**
@@ -46,6 +46,7 @@ public class Mapa extends JFrame {
 		personaje=new Personaje(labelPersonaje);
 		labelPersonaje.setIcon(new ImageIcon(personaje.getSprite()));
 		getContentPane().add(labelPersonaje);
+		juego.agregarPersonaje(personaje);
 		
 		mapaImagen=new JLabel();
 		if(nivel==10)

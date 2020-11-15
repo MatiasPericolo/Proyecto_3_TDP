@@ -8,7 +8,6 @@ public abstract class Disparo extends Entidad{
 
 	protected int velocidad;
 	protected int daño;
-	protected String sprite;
 	protected int coordenadaX,coordenadaY;
 	
 	public Disparo(int x, int y,int vel, int daño,String img) {
@@ -33,14 +32,6 @@ public abstract class Disparo extends Entidad{
 
 	public void setCoordenadaY(int coordenadaY) {
 		this.coordenadaY = coordenadaY;
-	}
-
-	public String getSprite() {
-		return sprite;
-	}
-
-	public void setSprite(String sprite) {
-		this.sprite = sprite;
 	}
 
 	public int getVelocidad() {

@@ -11,6 +11,7 @@ import GUI.Mapa;
 import Infectados.Alfa;
 import Infectados.Beta;
 import Infectados.Infectado;
+import Jugador.Personaje;
 
 public class Juego {
 
@@ -22,10 +23,12 @@ public class Juego {
 	
 	public Juego(Mapa gui) {
 		this.gui=gui;
-		listaInfectados=new LinkedList<Infectado>();
-		listaDisparos=new LinkedList<Disparo>();
 		listaEntidades=new LinkedList<Entidad>();
 		cooldown=0;
+	}
+	
+	public void agregarPersonaje(Personaje personaje) {
+		listaEntidades.add(personaje);
 	}
 	
 	public void generarEnemigoAleatorio() {
@@ -39,7 +42,6 @@ public class Juego {
 		infectadoAux.getLabel().setBounds(infectadoAux.getCoordenadaX(), 0, 199, 150);
 		infectadoAux.getLabel().setIcon(new ImageIcon(infectadoAux.getSprite()));
 		gui.getContentPane().add(infectadoAux.getLabel(),0);
-		//listaInfectados.add(infectadoAux);
 		listaEntidades.add(infectadoAux);
 		
 		
@@ -50,13 +52,12 @@ public class Juego {
 		disparo.getLabel().setBounds(disparo.getCoordenadaX(),disparo.getCoordenadaY(),20,22);
 		disparo.getLabel().setIcon(new ImageIcon(disparo.getSprite()));
 		gui.getContentPane().add(disparo.getLabel(),0);
-		//listaDisparos.add(disparo);
 		listaEntidades.add(disparo);
 	}
 	
 	public boolean colisionan(JLabel label1,JLabel label2) {
 		
-		if(label1.getBounds().intersects(label2.getBounds())) {
+		if(label1.getBounds().intersects(label2.getBounds()) && label1!=null && label2!=null) {
 			return true;
 		}else
 			return false;
@@ -66,8 +67,8 @@ public class Juego {
 	public void checkearColision() {
 		for(int i=0;i<listaEntidades.size();i++) {
 			for(int j=i;j<listaEntidades.size();j++) {
-				if(colisionan(listaEntidades.get(i).getLabel(),listaEntidades.get(j).getLabel()))
-					i=2;
+				if(colisionan(listaEntidades.get(i).getLabel(),listaEntidades.get(j).getLabel()) && listaEntidades.get(i).getLabel()!=listaEntidades.get(j).getLabel())
+					System.out.println("Colisiona "+listaEntidades.get(i).getSprite()+" con "+listaEntidades.get(j).getSprite()+".");
 			}
 		}
 	}
