@@ -9,9 +9,9 @@ public class EstadoNormal extends Estado{
 	}
 	
 	public void mover() {
-			if(miInfectado.getLabelInfectado().getY()<820)
-				miInfectado.getLabelInfectado().setBounds(miInfectado.getLabelInfectado().getX(),miInfectado.getLabelInfectado().getY()+miInfectado.getVelocidad(), 199, 150);
+			if(miInfectado.getLabel().getY()<820)
+				miInfectado.getLabel().setBounds(miInfectado.getLabel().getX(),miInfectado.getLabel().getY()+miInfectado.getVelocidad(), 199, 150);
 			else
-				miInfectado.getLabelInfectado().setBounds(miInfectado.getLabelInfectado().getX(),0, 199, 150);
+				miInfectado.getLabel().setBounds(miInfectado.getLabel().getX(),0, 199, 150);
 	}
 }

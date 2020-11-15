@@ -15,10 +15,10 @@ public class Beta extends Infectado{
 	}
 	
 	public void mover() {
-		if(labelInfectado.getY()<820)
-			labelInfectado.setBounds(labelInfectado.getX(),labelInfectado.getY()+getVelocidad(), 199, 150);
+		if(label.getY()<820)
+			label.setBounds(label.getX(),label.getY()+getVelocidad(), 199, 150);
 		else
-			labelInfectado.setBounds(labelInfectado.getX(),0, 199, 150);
+			label.setBounds(label.getX(),0, 199, 150);
 	}
 	
 	

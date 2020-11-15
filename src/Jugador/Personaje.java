@@ -11,7 +11,6 @@ import Juego.Entidad;
 
 public class Personaje extends Entidad{
 
-	protected JLabel labelPersonaje;
 	protected int cargaViral;
 	protected int velocidad;
 	protected String sprite;
@@ -21,7 +20,7 @@ public class Personaje extends Entidad{
 	protected ArmaSanitaria arma;
 	
 	public Personaje(JLabel label) {
-		labelPersonaje=label;
+		this.label=label;
 		control = new HiloControles(label);
 		control.start();
 		cargaViral=0;
@@ -30,14 +29,6 @@ public class Personaje extends Entidad{
 		direccion = "Derecha";
 		quieto = true;
 		arma=new ArmaSanitaria(10,10,"Sprites\\Disparos\\DisparoPersonaje.png");
-	}
-
-	public JLabel getLabelPersonaje() {
-		return labelPersonaje;
-	}
-
-	public void setLabelPersonaje(JLabel labelPersonaje) {
-		this.labelPersonaje = labelPersonaje;
 	}
 
 	public int getCargaViral() {
@@ -65,12 +56,12 @@ public class Personaje extends Entidad{
 	}
 	
 	public void moverDerecha() {
-		if(labelPersonaje.getX()<688) {
+		if(label.getX()<688) {
 			if(quieto){
-				labelPersonaje.setBounds(labelPersonaje.getX()+velocidad,labelPersonaje.getY(), 199, 150);
+				label.setBounds(label.getX()+velocidad,label.getY(), 199, 150);
 				quieto = false;
 			}
-			labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDerecha.gif"));
+			label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDerecha.gif"));
 			control.setVelocidad(velocidad);
 			direccion = "Derecha";
 		} else {
@@ -79,12 +70,12 @@ public class Personaje extends Entidad{
 	}
 	
 	public void moverIzquierda() {
-		if((labelPersonaje.getX()>-32)) {
+		if((label.getX()>-32)) {
 			if(quieto){
-				labelPersonaje.setBounds(labelPersonaje.getX()-velocidad,labelPersonaje.getY(), 199, 150);
+				label.setBounds(label.getX()-velocidad,label.getY(), 199, 150);
 				quieto = false;
 			}
-			labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeIzquierda.gif"));
+			label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeIzquierda.gif"));
 			control.setVelocidad(-velocidad);
 			direccion = "Izquierda";
 		} else {
@@ -95,14 +86,23 @@ public class Personaje extends Entidad{
 	public void quieto() {
 		quieto = true;
 		control.setVelocidad(0);
-		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif"));		
+		label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif"));		
 	}
 
 	public DisparoSanitario disparar() {
 		quieto();
-		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));	
-		DisparoSanitario disparo=arma.crearDisparo(labelPersonaje.getX()+(labelPersonaje.getHeight()/2),labelPersonaje.getY());
+		label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));	
+		DisparoSanitario disparo=arma.crearDisparo(label.getX()+(label.getHeight()/2),label.getY());
 		
 		return disparo;
+	}
+
+	public void mover() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean esInfectado() {
+		return false;
 	}
 }

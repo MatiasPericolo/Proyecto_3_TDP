@@ -16,7 +16,7 @@ public class Alfa extends Infectado{
 		super(label);
 		sprite="Sprites\\Personaje e Infectados\\InfectadoAlfa.gif";
 		velocidad=10;
-		estadoActual=new EstadoBerserk(this);
+		estadoActual=new EstadoNormal(this);
 		arma=new ArmaInfectado(velocidad*10, 5, 20, "Sprites\\Disparos\\DisparoAlfa.png");
 	}
 	
@@ -31,6 +31,5 @@ public class Alfa extends Infectado{
 	public void setEstadoActual(Estado estadoActual) {
 		this.estadoActual = estadoActual;
 	}
-	
 	
 }

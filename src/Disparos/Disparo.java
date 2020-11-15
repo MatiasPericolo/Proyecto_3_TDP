@@ -2,11 +2,12 @@ package Disparos;
 
 import javax.swing.JLabel;
 
-public abstract class Disparo {
+import Juego.Entidad;
+
+public abstract class Disparo extends Entidad{
 
 	protected int velocidad;
 	protected int daño;
-	protected JLabel label;
 	protected String sprite;
 	protected int coordenadaX,coordenadaY;
 	
@@ -57,15 +58,10 @@ public abstract class Disparo {
 	public void setDaño(int daño) {
 		this.daño = daño;
 	}
-
-	public JLabel getLabel() {
-		return label;
-	}
-
-	public void setLabel(JLabel label) {
-		this.label = label;
-	}
 	
 	public abstract void mover();
 	
+	public boolean esInfectado() {
+		return false;
+	}
 }

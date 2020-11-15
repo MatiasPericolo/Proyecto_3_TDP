@@ -9,12 +9,17 @@ import Juego.Entidad;
 
 public class Infectado extends Entidad{
 	
-	protected JLabel labelInfectado;
 	protected int cargaViral;
 	protected int velocidad;
 	protected String sprite;
 	protected int coordenadaX;
 	protected ArmaInfectado arma;
+	
+	public Infectado(JLabel label) {
+		cargaViral=100;
+		coordenadaX=((int) (Math.random()*720))-32;
+		this.label=label;
+	}
 	
 	public int getCoordenadaX() {
 		return coordenadaX;
@@ -22,21 +27,7 @@ public class Infectado extends Entidad{
 
 	public void setCoordenadaX(int coordenadaX) {
 		this.coordenadaX = coordenadaX;
-	}
-
-	public Infectado(JLabel label) {
-		cargaViral=100;
-		coordenadaX=((int) (Math.random()*720))-32;
-		labelInfectado=label;
-	}
-	
-	public JLabel getLabelInfectado() {
-		return labelInfectado;
-	}
-
-	public void setLabelInfectado(JLabel labelInfectado) {
-		this.labelInfectado = labelInfectado;
-	}
+	}	
 
 	public int getCargaViral() {
 		return cargaViral;
@@ -63,7 +54,7 @@ public class Infectado extends Entidad{
 	}
 
 	public DisparoInfectado disparar() {
-		DisparoInfectado disparo=arma.crearDisparo(labelInfectado.getX()+(labelInfectado.getHeight()/2),labelInfectado.getY());
+		DisparoInfectado disparo=arma.crearDisparo(label.getX()+(label.getHeight()/2),label.getY());
 		
 		return disparo;
 	}
@@ -71,5 +62,10 @@ public class Infectado extends Entidad{
 	public void mover() {
 		
 	}
+
+	public boolean esInfectado() {
+		return true;
+	}
+
 	
 }
