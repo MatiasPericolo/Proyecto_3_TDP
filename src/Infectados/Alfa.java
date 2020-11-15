@@ -18,6 +18,7 @@ public class Alfa extends Infectado{
 		velocidad=10;
 		estadoActual=new EstadoNormal(this);
 		arma=new ArmaInfectado(velocidad*10, 5, 20, "Sprites\\Disparos\\DisparoAlfa.png");
+		resistencia = 1;
 	}
 	
 	public void mover() {

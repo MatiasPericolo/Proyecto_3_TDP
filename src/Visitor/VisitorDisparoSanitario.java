@@ -3,8 +3,8 @@ package Visitor;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Infectados.Infectado;
-import Juego.Entidad;
 import Jugador.Personaje;
+import Premios.Premio;
 
 public class VisitorDisparoSanitario extends Visitor {
 
@@ -14,7 +14,7 @@ public class VisitorDisparoSanitario extends Visitor {
 
 	public void visitarInfectado(Infectado infectado) {
 		DisparoSanitario aux = (DisparoSanitario) miEntidad;
-		infectado.setCargaViral(aux.getDaño());
+		infectado.recibirCura(aux.getDaño());
 		miEntidad.destruir();
 		System.out.println("Carga infectado:"+infectado.getCargaViral());
 	}
@@ -28,6 +28,11 @@ public class VisitorDisparoSanitario extends Visitor {
 	}
 
 	public void visitarDisparoSanitario(DisparoSanitario disparo) {
+		
+	}
+
+	@Override
+	public void visitarPremio(Premio premio) {
 		
 	}
 

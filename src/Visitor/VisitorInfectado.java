@@ -5,6 +5,7 @@ import Disparos.DisparoSanitario;
 import Infectados.Infectado;
 import Juego.Entidad;
 import Jugador.Personaje;
+import Premios.Premio;
 
 public class VisitorInfectado extends Visitor{
 
@@ -18,8 +19,7 @@ public class VisitorInfectado extends Visitor{
 
 	public void visitarPersonaje(Personaje personaje) {
 		Infectado aux = (Infectado) miEntidad;
-		personaje.setDaño(100);
-		System.out.println(personaje.getCargaViral());
+		personaje.recibirVirus(100);
 	}
 
 	public void visitarDisparoInfectado(DisparoInfectado disparo) {
@@ -28,9 +28,13 @@ public class VisitorInfectado extends Visitor{
 
 	public void visitarDisparoSanitario(DisparoSanitario disparo) {
 		Infectado aux = (Infectado) miEntidad;
-		aux.setCargaViral(disparo.getDaño());
+		aux.recibirCura(disparo.getDaño());
 		disparo.destruir();
-		System.out.println("Carga infectado:"+aux.getCargaViral());
+	}
+
+	@Override
+	public void visitarPremio(Premio premio) {
+		
 	}
 
 }

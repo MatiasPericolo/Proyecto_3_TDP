@@ -15,6 +15,8 @@ public class Infectado extends Entidad{
 	protected int velocidad;
 	protected int coordenadaX;
 	protected ArmaInfectado arma;
+	protected int resistencia;
+
 	
 	public Infectado(JLabel label) {
 		tipo="Infectado";
@@ -55,7 +57,7 @@ public class Infectado extends Entidad{
 	}
 	
 	public void destruir() {
-		
+		label.setVisible(false);
 	}
 	
 	public void mover() {
@@ -64,5 +66,12 @@ public class Infectado extends Entidad{
 
 	public void recibir(Visitor visitor) {
 		visitor.visitarInfectado(this);
+	}
+	
+	public void recibirCura(int cura) {
+		cargaViral -= cura/resistencia;
+		if(cargaViral <= 0) {
+			destruir();
+		}
 	}
 }

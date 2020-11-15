@@ -22,12 +22,13 @@ public class HiloControles extends Thread {
 	public void run() {
 		while(run) {
 			if(pj.getX()<689 && pj.getX() > -33)
-				pj.setBounds(pj.getX()+velocidad,pj.getY(), 199, 150);
+				pj.setBounds(pj.getX()+velocidad,pj.getY(), pj.getWidth(), pj.getHeight());
 			try {
 				Thread.sleep(40);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			System.out.println(pj.getWidth()+"/"+pj.getHeight());
 		}
 	}
 

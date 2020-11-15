@@ -62,10 +62,12 @@ public class Personaje extends Entidad{
 	public void moverDerecha() {
 		if(label.getX()<688) {
 			if(quieto){
-				label.setBounds(label.getX()+velocidad,label.getY(), 199, 150);
+				label.setBounds(label.getX()+velocidad,label.getY(),  label.getWidth(), label.getHeight());
 				quieto = false;
 			}
-			label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDerecha.gif"));
+			ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeDerecha.gif");
+			label.setIcon(icon);
+			label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());
 			control.setVelocidad(velocidad);
 			direccion = "Derecha";
 		} else {
@@ -76,10 +78,12 @@ public class Personaje extends Entidad{
 	public void moverIzquierda() {
 		if((label.getX()>-32)) {
 			if(quieto){
-				label.setBounds(label.getX()-velocidad,label.getY(), 199, 150);
+				label.setBounds(label.getX()-velocidad,label.getY(),  label.getWidth(), label.getHeight());
 				quieto = false;
 			}
-			label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeIzquierda.gif"));
+			ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeIzquierda.gif");
+			label.setIcon(icon);
+			label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());
 			control.setVelocidad(-velocidad);
 			direccion = "Izquierda";
 		} else {
@@ -90,22 +94,26 @@ public class Personaje extends Entidad{
 	public void quieto() {
 		quieto = true;
 		control.setVelocidad(0);
-		label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif"));		
+		ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif");
+		label.setIcon(icon);
+		label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());	
 	}
 
 	public DisparoSanitario disparar() {
 		quieto();
-		label.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));	
-		DisparoSanitario disparo=arma.crearDisparo(label.getX()+(label.getHeight()/2),label.getY());
+		ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif");	
+		label.setIcon(icon);
+		label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());	
+		DisparoSanitario disparo=arma.crearDisparo(label.getX()+(label.getWidth()/2),label.getY());
 		
 		return disparo;
 	}
 
 	public void mover() {
-		System.out.println();
+		
 	}
 	
-	public void setDaño(int daño) {
+	public void recibirVirus(int daño) {
 		cargaViral +=daño;	
 		System.out.println(cargaViral);
 	}

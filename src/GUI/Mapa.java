@@ -36,15 +36,17 @@ public class Mapa extends JFrame {
 		juego=new Juego(this);
 		nivelActual=new Nivel(nivel,juego);
 		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 0, 810, 1000);
 		getContentPane().setLayout(null);
 		setResizable(false);
 			
 		JLabel labelPersonaje = new JLabel();
-		labelPersonaje.setBounds(288, 810, 199, 150);
 		personaje=new Personaje(labelPersonaje);
-		labelPersonaje.setIcon(new ImageIcon(personaje.getSprite()));
+		ImageIcon iconPJ = new ImageIcon(personaje.getSprite());
+		labelPersonaje.setBounds(288, 810, iconPJ.getIconWidth(), iconPJ.getIconHeight());
+		labelPersonaje.setIcon(iconPJ);
 		getContentPane().add(labelPersonaje);
 		juego.agregarPersonaje(personaje);
 		

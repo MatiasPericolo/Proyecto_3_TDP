@@ -49,26 +49,19 @@ public class Juego {
 		listaEntidades.add(infectadoAux);
 	}
 	
-	public void crearPremio(int x, int y) {
-		int tipoPremio = 0;
+	public void crearPremio() {
+		int tipoPremio = ((int) Math.floor(Math.random()*2));
 		Premio p;
+		
 		if(tipoPremio == 0) { //Temporal
 			tipoPremio = ((int) Math.floor(Math.random()*2));
 			p = new Temporal(10, 3000, gui.crearLabel());
-			p.setEfecto(tipoPremio);
-			p.setSprite(tipoPremio);
 		}
 		else {//Objeto precioso
 			p = new ObjetoPrecioso(10, gui.crearLabel());
-			p.setEfecto(0);
-			p.setSprite(0);
 		}
-		p.setCoordenadaX(x);
-		p.setCoordenadaY(y);
-		System.out.println(p.getCoordenadaX()+"/"+p.getCoordenadaY());
 		p.getLabel().setBounds(p.getCoordenadaX(), p.getCoordenadaY(), 50, 50);
 		p.getLabel().setIcon(new ImageIcon(p.getSprite()));
-		gui.getContentPane().add(p.getLabel());
 		listaEntidades.add(p);
 		
 	}
@@ -98,14 +91,14 @@ public class Juego {
 					listaEntidades.get(j).recibir(listaEntidades.get(i).getVisitor());
 				if(!listaEntidades.get(i).getLabel().isVisible()) {
 					if(listaEntidades.get(i).getTipo() == "Infectado") {
-						crearPremio(listaEntidades.get(i).getLabel().getX(),listaEntidades.get(i).getLabel().getY());
+						//Generar premio
 					}
 												
 					listaEntidades.remove(i);
 				}
 				if(!listaEntidades.get(j).getLabel().isVisible()) {
 					if(listaEntidades.get(j).getTipo() == "Infectado") {
-						crearPremio(listaEntidades.get(j).getLabel().getX(),listaEntidades.get(j).getLabel().getY());
+						//Generar premio
 					}
 					listaEntidades.remove(j);
 				}

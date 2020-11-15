@@ -5,6 +5,7 @@ import Disparos.DisparoSanitario;
 import Infectados.Infectado;
 import Juego.Entidad;
 import Jugador.Personaje;
+import Premios.Premio;
 
 public abstract class Visitor {
 	
@@ -14,7 +15,7 @@ public abstract class Visitor {
 		miEntidad = e;
 	}
 	public abstract void visitarInfectado(Infectado infectado);
-	//public abstract void visitarPremio(Premio premio);
+	public abstract void visitarPremio(Premio premio);
 	public abstract void visitarPersonaje(Personaje personaje);
 	public abstract void visitarDisparoInfectado(DisparoInfectado disparo);
 	public abstract void visitarDisparoSanitario(DisparoSanitario disparo);

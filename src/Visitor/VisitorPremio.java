@@ -7,35 +7,40 @@ import Juego.Entidad;
 import Jugador.Personaje;
 import Premios.Premio;
 
-public class VisitorPersonaje extends Visitor{
-	
+public class VisitorPremio extends Visitor {
 
-	public VisitorPersonaje(Personaje e) {
+	public VisitorPremio(Premio e) {
 		super(e);
 	}
 
+	@Override
 	public void visitarInfectado(Infectado infectado) {
-		Personaje aux = (Personaje) miEntidad;
-		aux.recibirVirus(100);
-				
-	}
+		// TODO Auto-generated method stub
 
-	public void visitarPersonaje(Personaje personaje) {
-		
-	}
-
-	public void visitarDisparoInfectado(DisparoInfectado disparo) {
-		
-	}
-
-	public void visitarDisparoSanitario(DisparoSanitario disparo) {
-		
 	}
 
 	@Override
 	public void visitarPremio(Premio premio) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void visitarPersonaje(Personaje personaje) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void visitarDisparoInfectado(DisparoInfectado disparo) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void visitarDisparoSanitario(DisparoSanitario disparo) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
