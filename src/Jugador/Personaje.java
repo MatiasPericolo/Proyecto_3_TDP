@@ -3,6 +3,9 @@ package Jugador;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Arma.ArmaSanitaria;
+import Disparos.DisparoInfectado;
+import Disparos.DisparoSanitario;
 import Hilos.HiloControles;
 import Juego.Entidad;
 
@@ -15,6 +18,7 @@ public class Personaje extends Entidad{
 	protected String direccion;
 	protected HiloControles control;
 	protected boolean quieto;
+	protected ArmaSanitaria arma;
 	
 	public Personaje(JLabel label) {
 		labelPersonaje=label;
@@ -25,6 +29,7 @@ public class Personaje extends Entidad{
 		sprite="Sprites\\Personaje e Infectados\\personaje.gif";
 		direccion = "Derecha";
 		quieto = true;
+		arma=new ArmaSanitaria(10,10,"Sprites\\Disparos\\DisparoPersonaje.png");
 	}
 
 	public JLabel getLabelPersonaje() {
@@ -93,8 +98,11 @@ public class Personaje extends Entidad{
 		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeQuieto"+direccion+".gif"));		
 	}
 
-	public void disparar() {
+	public DisparoSanitario disparar() {
 		quieto();
 		labelPersonaje.setIcon(new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif"));	
+		DisparoSanitario disparo=arma.crearDisparo(labelPersonaje.getX()+(labelPersonaje.getHeight()/2),labelPersonaje.getY());
+		
+		return disparo;
 	}
 }

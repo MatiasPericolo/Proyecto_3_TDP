@@ -28,7 +28,6 @@ public class Juego {
 	public void generarEnemigoAleatorio() {
 		Infectado infectadoAux;
 		int random = (int) Math.floor(Math.random()*2);
-		System.out.println(random);
 		if(random == 0) {
 			infectadoAux =new Alfa(gui.crearLabel());
 		} else {
