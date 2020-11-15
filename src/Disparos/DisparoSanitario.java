@@ -4,6 +4,7 @@ public class DisparoSanitario extends Disparo{
 	
 	public DisparoSanitario(int x, int y,int vel, int daño,String img) {
 		super(x,y,vel,daño,img);
+		tipo="DisparoSanitario";
 	}
 	
 	public void mover() {

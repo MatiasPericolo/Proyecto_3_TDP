@@ -20,6 +20,7 @@ public class Personaje extends Entidad{
 	protected ArmaSanitaria arma;
 	
 	public Personaje(JLabel label) {
+		tipo="Personaje";
 		this.label=label;
 		control = new HiloControles(label);
 		control.start();

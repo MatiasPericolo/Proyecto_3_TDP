@@ -7,6 +7,7 @@ public class DisparoInfectado extends Disparo{
 	
 	public DisparoInfectado(int x, int y,int vel, int daño,String img,int al) {
 		super(x,y,vel,daño,img);
+		tipo="DisparoInfectado";
 		alcance=al;
 		recorrido=0;
 	}

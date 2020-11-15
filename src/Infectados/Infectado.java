@@ -15,6 +15,7 @@ public class Infectado extends Entidad{
 	protected ArmaInfectado arma;
 	
 	public Infectado(JLabel label) {
+		tipo="Infectado";
 		cargaViral=100;
 		coordenadaX=((int) (Math.random()*720))-32;
 		this.label=label;

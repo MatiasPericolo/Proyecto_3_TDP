@@ -76,7 +76,7 @@ public class Juego {
 	public void mover() {
 		for(int i=0;i<listaEntidades.size();i++) {
 			listaEntidades.get(i).mover();
-			if(listaEntidades.get(i).esInfectado())
+			if(listaEntidades.get(i).getTipo()=="Infectado")
 				if(cooldown==10) {
 					generarDisparo(((Infectado)listaEntidades.get(i)).disparar());
 					cooldown=0;
