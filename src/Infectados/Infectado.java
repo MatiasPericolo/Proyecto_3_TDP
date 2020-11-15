@@ -2,6 +2,9 @@ package Infectados;
 
 import javax.swing.JLabel;
 
+import Arma.ArmaInfectado;
+import Disparos.Disparo;
+import Disparos.DisparoInfectado;
 import Juego.Entidad;
 
 public class Infectado extends Entidad{
@@ -11,6 +14,7 @@ public class Infectado extends Entidad{
 	protected int velocidad;
 	protected String sprite;
 	protected int coordenadaX;
+	protected ArmaInfectado arma;
 	
 	public int getCoordenadaX() {
 		return coordenadaX;
@@ -58,6 +62,12 @@ public class Infectado extends Entidad{
 		this.sprite = sprite;
 	}
 
+	public DisparoInfectado disparar() {
+		DisparoInfectado disparo=arma.crearDisparo(labelInfectado.getX()+(labelInfectado.getHeight()/2),labelInfectado.getY());
+		
+		return disparo;
+	}
+	
 	public void mover() {
 		
 	}

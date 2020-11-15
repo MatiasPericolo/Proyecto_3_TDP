@@ -1,7 +1,13 @@
 package Arma;
 
-public abstract class Arma {
+import Disparos.Disparo;
 
-	public abstract void disparar();
+public abstract class Arma {
+	
+	protected int velocidad;
+	protected int daño;
+	protected String spriteDisparo;
+
+	public abstract Disparo crearDisparo(int x, int y);
 	
 }

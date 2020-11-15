@@ -62,7 +62,7 @@ public class Mapa extends JFrame {
 		nivelActual.iniciarJuego();
 	}
 	
-	public JLabel crearLabelEnemigo() {
+	public JLabel crearLabel() {
 		JLabel labelAux = new JLabel();
 		return labelAux;
 	}
