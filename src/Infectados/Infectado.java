@@ -55,9 +55,6 @@ public class Infectado extends Entidad{
 		
 	}
 
-	public boolean esInfectado() {
-		return true;
-	}
-
+	
 	
 }

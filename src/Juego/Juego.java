@@ -12,6 +12,9 @@ import Infectados.Alfa;
 import Infectados.Beta;
 import Infectados.Infectado;
 import Jugador.Personaje;
+import Premios.ObjetoPrecioso;
+import Premios.Premio;
+import Premios.Temporal;
 
 public class Juego {
 
@@ -46,6 +49,24 @@ public class Juego {
 		
 		
 	}
+	
+	public void crearPremio() {
+		int tipoPremio = ((int) Math.floor(Math.random()*2));
+		Premio p;
+		
+		if(tipoPremio == 0) { //Temporal
+			tipoPremio = ((int) Math.floor(Math.random()*2));
+			p = new Temporal(10, 3000, gui.crearLabel());
+		}
+		else {//Objeto precioso
+			p = new ObjetoPrecioso(10, gui.crearLabel());
+		}
+		p.getLabel().setBounds(p.getCoordenadaX(), p.getCoordenadaY(), 50, 50);
+		p.getLabel().setIcon(new ImageIcon(p.getSprite()));
+		listaEntidades.add(p);
+		
+	}
+
 	
 	public void generarDisparo(Disparo disparo) {
 		disparo.setLabel(gui.crearLabel());

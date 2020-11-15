@@ -69,7 +69,6 @@ public class VentanaPrincipal extends JFrame {
 			ventanaElegirNivel=new JFrame("Elegir Nivel");
 			ventanaElegirNivel.setBounds(700, 250, 400, 300);
 			ventanaElegirNivel.setVisible(true);
-			ventanaElegirNivel.setResizable(false);
 			
 			//Creo el panel para elegir Nivel
 			panelElegirNivel=new JPanel();
