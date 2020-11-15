@@ -57,9 +57,13 @@ public class Juego {
 		if(tipoPremio == 0) { //Temporal
 			tipoPremio = ((int) Math.floor(Math.random()*2));
 			p = new Temporal(10, 3000, gui.crearLabel());
+			p.setEfecto(tipoPremio);
+			p.setSprite(tipoPremio);
 		}
 		else {//Objeto precioso
 			p = new ObjetoPrecioso(10, gui.crearLabel());
+			p.setEfecto(0);
+			p.setSprite(0);
 		}
 		p.getLabel().setBounds(p.getCoordenadaX(), p.getCoordenadaY(), 50, 50);
 		p.getLabel().setIcon(new ImageIcon(p.getSprite()));

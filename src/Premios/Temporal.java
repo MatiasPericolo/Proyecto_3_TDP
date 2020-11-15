@@ -13,6 +13,7 @@ public class Temporal extends Premio {
 		tiempoActivo = t;
 		label = l;
 		efectos = new String[]{"Cuarentena", "SuperArma"};
+		sprites = new String[] {"Sprites\\Premios\\cuarentena.png", "Sprites\\Premios\\cuarentena.png"};
 	}
 	
 	public void setTiempo(int t) {

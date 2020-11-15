@@ -1,6 +1,7 @@
 package Premios;
 
 import Juego.Entidad;
+import Visitor.Visitor;
 
 public class Premio extends Entidad {
 
@@ -8,7 +9,7 @@ public class Premio extends Entidad {
 	protected int coordenadaX;
 	protected int coordenadaY;
 	protected String sprite;
-	protected String [] efectos;
+	protected String [] efectos, sprites;
 	protected String efecto;
 	
 	@Override
@@ -43,8 +44,8 @@ public class Premio extends Entidad {
 		return velocidad;
 	}
 	
-	public void setSprite(String s) {
-		sprite = s;
+	public void setSprite(int s) {
+		sprite = sprites[s];
 	}
 	
 	public String getSprite() {
@@ -53,6 +54,16 @@ public class Premio extends Entidad {
 	
 	public void setEfecto(int e) {
 		efecto = efectos[e];
+	}
+
+	@Override
+	public void recibir(Visitor visitor) {
+		
+	}
+
+	@Override
+	public void destruir() {
+		
 	}
 	
 }

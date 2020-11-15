@@ -8,6 +8,7 @@ public class ObjetoPrecioso extends Premio {
 		velocidad = v;
 		label = l;
 		efectos = new String[] {"Pocion"};
+		sprites = new String[] {"Sprite\\Premios\\pocion.png"};
 	}
 	
 }
