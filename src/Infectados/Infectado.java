@@ -3,7 +3,6 @@ package Infectados;
 import javax.swing.JLabel;
 
 import Arma.ArmaInfectado;
-import Disparos.Disparo;
 import Disparos.DisparoInfectado;
 import Juego.Entidad;
 import States.Estado;
@@ -29,38 +28,6 @@ public class Infectado extends Entidad{
 		estadoActual=new EstadoNormal(this);
 		this.label=label;
 		estadoGuardado=new EstadoNormal(this);
-	}
-	
-	public Estado getEstadoGuardado() {
-		return estadoGuardado;
-	}
-
-	public void setEstadoGuardado(Estado estadoGuardado) {
-		this.estadoGuardado = estadoGuardado;
-	}
-
-	public int getCoordenadaX() {
-		return coordenadaX;
-	}
-
-	public void setCoordenadaX(int coordenadaX) {
-		this.coordenadaX = coordenadaX;
-	}	
-
-	public int getCargaViral() {
-		return cargaViral;
-	}
-
-	public void setCargaViral(int cargaViral) {
-		this.cargaViral = cargaViral;
-	}
-
-	public int getVelocidad() {
-		return velocidad;
-	}
-
-	public void setVelocidad(int velocidad) {
-		this.velocidad = velocidad;
 	}
 
 	public DisparoInfectado disparar() {
@@ -94,5 +61,37 @@ public class Infectado extends Entidad{
 
 	public void setEstadoActual(Estado estadoActual) {
 		this.estadoActual = estadoActual;
+	}
+	
+	public Estado getEstadoGuardado() {
+		return estadoGuardado;
+	}
+
+	public void setEstadoGuardado(Estado estadoGuardado) {
+		this.estadoGuardado = estadoGuardado;
+	}
+
+	public int getCoordenadaX() {
+		return coordenadaX;
+	}
+
+	public void setCoordenadaX(int coordenadaX) {
+		this.coordenadaX = coordenadaX;
+	}	
+
+	public int getCargaViral() {
+		return cargaViral;
+	}
+
+	public void setCargaViral(int cargaViral) {
+		this.cargaViral = cargaViral;
+	}
+
+	public int getVelocidad() {
+		return velocidad;
+	}
+
+	public void setVelocidad(int velocidad) {
+		this.velocidad = velocidad;
 	}
 }

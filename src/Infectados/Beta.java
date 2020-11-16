@@ -1,9 +1,7 @@
 package Infectados;
 
 import javax.swing.JLabel;
-
 import Arma.ArmaInfectado;
-import Disparos.DisparoInfectado;
 
 public class Beta extends Infectado{
 	

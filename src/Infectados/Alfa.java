@@ -1,12 +1,7 @@
 package Infectados;
 
 import javax.swing.JLabel;
-
 import Arma.ArmaInfectado;
-import Disparos.DisparoInfectado;
-import States.Estado;
-import States.EstadoBerserk;
-import States.EstadoNormal;
 
 public class Alfa extends Infectado{
 

@@ -1,12 +1,10 @@
 package GUI;
 
-import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
 import Juego.Juego;
 import Juego.Nivel;
 import Jugador.Personaje;
@@ -21,16 +19,6 @@ public class Mapa extends JFrame {
 	
 	protected Juego juego;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		Mapa frame = new Mapa(1);
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Mapa(int nivel) {
 		
 		juego=new Juego(this);
