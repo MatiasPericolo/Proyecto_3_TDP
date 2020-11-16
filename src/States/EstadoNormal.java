@@ -14,4 +14,8 @@ public class EstadoNormal extends Estado{
 			else
 				miInfectado.getLabel().setBounds(miInfectado.getLabel().getX(),0, miInfectado.getLabel().getWidth(), miInfectado.getLabel().getHeight());
 	}
+	
+	public String toString() {
+		return "Normal";
+	}
 }

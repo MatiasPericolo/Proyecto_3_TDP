@@ -2,6 +2,7 @@ package Juego;
 
 import GUI.Mapa;
 import Hilos.HiloCheckeoColisiones;
+import Hilos.HiloCheckeoPremios;
 import Hilos.HiloCreadorInfectados;
 import Hilos.HiloMoverInfectados;
 
@@ -11,6 +12,7 @@ public class Nivel {
 	protected HiloCreadorInfectados hiloCreador;
 	protected HiloMoverInfectados hiloMovimiento;
 	protected HiloCheckeoColisiones hiloColisiones;
+	protected HiloCheckeoPremios hiloPremios;
 	protected Juego juego;
 	
 	public Nivel(int cantInfectados,Juego juego) {
@@ -19,6 +21,7 @@ public class Nivel {
 		hiloCreador=new HiloCreadorInfectados(juego,cantidadInfectados);
 		hiloMovimiento=new HiloMoverInfectados(juego);
 		hiloColisiones=new HiloCheckeoColisiones(juego);
+		hiloPremios=new HiloCheckeoPremios(juego) ;
 	}
 	
 	public void iniciarJuego() {
@@ -26,5 +29,6 @@ public class Nivel {
 		hiloCreador.start();
 		hiloMovimiento.start();
 		hiloColisiones.start();
+		hiloPremios.start();
 	}
 }

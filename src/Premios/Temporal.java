@@ -2,18 +2,18 @@ package Premios;
 
 import javax.swing.JLabel;
 
+import Hilos.HiloPremioTemporal;
+
 public class Temporal extends Premio {
 	
-	
 	protected int tiempoActivo;
+	protected HiloPremioTemporal hiloTemporal;
 	
-	public Temporal(int v, int t, JLabel l) {
-		tipo = "Temporal";
-		velocidad = v;
+	public Temporal(int x,int y, int t) {
+		super(x,y);
 		tiempoActivo = t;
-		label = l;
-		efectos = new String[]{"Cuarentena", "SuperArma"};
-		sprites = new String[] {"Sprites\\Premios\\cuarentena.png", "Sprites\\Premios\\cuarentena.png"};
+		temporal=true;
+		hiloTemporal=new HiloPremioTemporal(this);
 	}
 	
 	public void setTiempo(int t) {
@@ -24,4 +24,7 @@ public class Temporal extends Premio {
 		return tiempoActivo;
 	}
 	
+	public void empezarHilo() {
+		hiloTemporal.start();
+	}
 }

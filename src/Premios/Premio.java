@@ -5,19 +5,50 @@ import Visitor.Visitor;
 
 public class Premio extends Entidad {
 
-	protected int velocidad;
 	protected int coordenadaX;
 	protected int coordenadaY;
-	protected String sprite;
-	protected String [] efectos, sprites;
 	protected String efecto;
+	protected boolean activado;
+	protected boolean termino;
+	protected boolean temporal;
 	
-	@Override
+	public boolean isTemporal() {
+		return temporal;
+	}
+
+	public void setTemporal(boolean temporal) {
+		this.temporal = temporal;
+	}
+
+	public Premio(int x, int y) {
+		coordenadaX=x;
+		coordenadaY=y;
+		activado=false;
+		tipo="Premio";
+		termino=false;
+	}
+	
+	public boolean getTermino() {
+		return termino;
+	}
+
+	public void setTermino(boolean termino) {
+		this.termino = termino;
+	}
+
+	public boolean isActivado() {
+		return activado;
+	}
+
+	public void setActivado(boolean activado) {
+		this.activado = activado;
+	}
+
 	public void mover() {
 		if(label.getY()<820)
-			label.setBounds(label.getX(),label.getY()+velocidad, 199, 150);
+			label.setBounds(label.getX(),label.getY()+10, 199, 150);
 		else
-			label.setBounds(label.getX(),0, 199, 150);
+			destruir();
 	}
 	
 	public void setCoordenadaX(int x) {
@@ -35,35 +66,23 @@ public class Premio extends Entidad {
 	public int getCoordenadaY() {
 		return coordenadaY;
 	}
-	
-	public void setVelocidad(int v) {
-		velocidad = v;
-	}
-	
-	public int getVelocidad() {
-		return velocidad;
-	}
-	
-	public void setSprite(int s) {
-		sprite = sprites[s];
-	}
-	
-	public String getSprite() {
-		return sprite;
-	}
-	
-	public void setEfecto(int e) {
-		efecto = efectos[e];
-	}
 
-	@Override
-	public void recibir(Visitor visitor) {
-		
-	}
-
-	@Override
 	public void destruir() {
-		
+		System.out.println("Destruido");
+		label.setVisible(false);
 	}
+
+	public void recibir(Visitor visitor) {
+		visitor.visitarPremio(this);
+	}
+
+	public String getEfecto() {
+		return efecto;
+	}
+
+	public void setEfecto(String efecto) {
+		this.efecto = efecto;
+	}
+	
 	
 }

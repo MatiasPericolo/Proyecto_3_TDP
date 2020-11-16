@@ -3,44 +3,46 @@ package Visitor;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Infectados.Infectado;
-import Juego.Entidad;
 import Jugador.Personaje;
+import Premios.Cuarentena;
+import Premios.Pocion;
 import Premios.Premio;
+import States.EstadoQuieto;
 
-public class VisitorPremio extends Visitor {
+public class VisitorPocion extends Visitor{
 
-	public VisitorPremio(Premio e) {
+	public VisitorPocion(Pocion e) {
 		super(e);
 	}
-
-	@Override
-	public void visitarInfectado(Infectado infectado) {
+	
+	public void visitarInfectado(Infectado infectado) {	
 		// TODO Auto-generated method stub
-
+			
 	}
 
-	@Override
 	public void visitarPremio(Premio premio) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitarPersonaje(Personaje personaje) {
-		// TODO Auto-generated method stub
-
+		if(((Pocion)miEntidad).isActivado()) {
+			personaje.recibirVirus(-20);
+			((Pocion)miEntidad).setTermino(true);
+		}
 	}
 
 	@Override
 	public void visitarDisparoInfectado(DisparoInfectado disparo) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void visitarDisparoSanitario(DisparoSanitario disparo) {
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 }

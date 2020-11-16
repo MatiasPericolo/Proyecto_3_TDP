@@ -3,6 +3,7 @@ package Jugador;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import Arma.Arma;
 import Arma.ArmaSanitaria;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
@@ -19,8 +20,16 @@ public class Personaje extends Entidad{
 	protected String direccion;
 	protected HiloControles control;
 	protected boolean quieto;
-	protected ArmaSanitaria arma;
+	protected Arma arma,armaGuardada;
 	
+	public Arma getArmaGuardada() {
+		return armaGuardada;
+	}
+
+	public void setArmaGuardada(Arma armaGuardada) {
+		this.armaGuardada = armaGuardada;
+	}
+
 	public Personaje(JLabel label) {
 		visitor=new VisitorPersonaje(this);
 		tipo="Personaje";
@@ -104,7 +113,7 @@ public class Personaje extends Entidad{
 		ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif");	
 		label.setIcon(icon);
 		label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());	
-		DisparoSanitario disparo=arma.crearDisparo(label.getX()+(label.getWidth()/2),label.getY());
+		DisparoSanitario disparo=(DisparoSanitario)arma.crearDisparo(label.getX()+(label.getWidth()/2),label.getY());
 		
 		return disparo;
 	}
@@ -115,7 +124,6 @@ public class Personaje extends Entidad{
 	
 	public void recibirVirus(int daño) {
 		cargaViral +=daño;	
-		System.out.println(cargaViral);
 	}
 
 	public void recibir(Visitor visitor) {
@@ -126,4 +134,11 @@ public class Personaje extends Entidad{
 		
 	}
 	
+	public void setArma(Arma arma) {
+		this.arma=arma;
+	}
+	
+	public Arma getArma() {
+		return arma;
+	}
 }

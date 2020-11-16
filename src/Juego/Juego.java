@@ -12,21 +12,24 @@ import Infectados.Alfa;
 import Infectados.Beta;
 import Infectados.Infectado;
 import Jugador.Personaje;
+import Premios.Cuarentena;
 import Premios.ObjetoPrecioso;
+import Premios.Pocion;
 import Premios.Premio;
+import Premios.SuperArma;
 import Premios.Temporal;
 
 public class Juego {
 
-	protected List<Infectado> listaInfectados;
-	protected List<Disparo> listaDisparos;
 	protected List<Entidad> listaEntidades;
+	protected List<Premio> listaPremios;
 	protected Mapa gui;
 	protected int cooldown;
 	
 	public Juego(Mapa gui) {
 		this.gui=gui;
 		listaEntidades=new LinkedList<Entidad>();
+		listaPremios=new LinkedList<Premio>();
 		cooldown=0;
 	}
 	
@@ -50,26 +53,22 @@ public class Juego {
 	}
 	
 	public void crearPremio(int x, int y) {
-		int tipoPremio = 0;
-		Premio p;
-		if(tipoPremio == 0) { //Temporal
-			tipoPremio = ((int) Math.floor(Math.random()*2));
-			p = new Temporal(10, 3000, gui.crearLabel());
-			p.setEfecto(tipoPremio);
-			p.setSprite(tipoPremio);
+		Premio premio;
+		int random = 1;//(int) Math.floor(Math.random()*3);
+		if(random == 0) {
+			premio=new Cuarentena(x,y,3000);
+		} else if(random == 1) {
+			premio=new SuperArma(x,y,3000);
+		}else {
+			premio=new Pocion(x,y);
 		}
-		else {//Objeto precioso
-			p = new ObjetoPrecioso(10, gui.crearLabel());
-			p.setEfecto(0);
-			p.setSprite(0);
-		}
-		p.setCoordenadaX(x);
-		p.setCoordenadaY(y);
-		System.out.println(p.getCoordenadaX()+"/"+p.getCoordenadaY());
-		p.getLabel().setBounds(p.getCoordenadaX(), p.getCoordenadaY(), 50, 50);
-		p.getLabel().setIcon(new ImageIcon(p.getSprite()));
-		gui.getContentPane().add(p.getLabel());
-		listaEntidades.add(p);
+		
+		premio.setLabel(gui.crearLabel());
+		premio.getLabel().setBounds(premio.getCoordenadaX(),premio.getCoordenadaY(),50,50);
+		premio.getLabel().setIcon(new ImageIcon(premio.getSprite()));
+		gui.getContentPane().add(premio.getLabel(),0);
+		listaEntidades.add(premio);
+		listaPremios.add(premio);
 		
 	}
 
@@ -96,11 +95,11 @@ public class Juego {
 			for(int j=i;j<listaEntidades.size();j++) {
 				if(colisionan(listaEntidades.get(i).getLabel(),listaEntidades.get(j).getLabel()) && listaEntidades.get(i).getLabel()!=listaEntidades.get(j).getLabel())
 					listaEntidades.get(j).recibir(listaEntidades.get(i).getVisitor());
+				
 				if(!listaEntidades.get(i).getLabel().isVisible()) {
 					if(listaEntidades.get(i).getTipo() == "Infectado") {
 						crearPremio(listaEntidades.get(i).getLabel().getX(),listaEntidades.get(i).getLabel().getY());
-					}
-												
+					}						
 					listaEntidades.remove(i);
 				}
 				if(!listaEntidades.get(j).getLabel().isVisible()) {
@@ -108,6 +107,28 @@ public class Juego {
 						crearPremio(listaEntidades.get(j).getLabel().getX(),listaEntidades.get(j).getLabel().getY());
 					}
 					listaEntidades.remove(j);
+				}
+			}
+		}
+	}
+	
+	public void activarPremios() {
+		
+		
+		if(!listaPremios.isEmpty()) {
+			for(int i=0;i<listaPremios.size();i++) {
+				for(int j=0;j<listaEntidades.size();j++) {
+					listaEntidades.get(j).recibir(listaPremios.get(i).getVisitor());
+				}
+				listaPremios.get(i).setActivado(false);
+			}
+			for(int i=0;i<listaPremios.size();i++) {
+				if(listaPremios.get(i).getTermino()) {
+					for(int j=0;j<listaEntidades.size();j++) {
+						listaEntidades.get(j).recibir(listaPremios.get(i).getVisitor());
+					}
+					listaPremios.remove(i);
+					i--;
 				}
 			}
 		}

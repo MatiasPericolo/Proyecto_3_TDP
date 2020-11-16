@@ -1,6 +1,5 @@
 package GUI;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,7 +14,6 @@ import java.awt.event.ActionEvent;
 
 public class VentanaPrincipal extends JFrame {
 
-	private JPanel contentPane;
 	private JFrame ventanaElegirNivel;
 	private JPanel panelElegirNivel;
 

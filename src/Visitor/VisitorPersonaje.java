@@ -1,11 +1,14 @@
 package Visitor;
 
+import java.util.TimerTask;
+
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Infectados.Infectado;
 import Juego.Entidad;
 import Jugador.Personaje;
 import Premios.Premio;
+import Premios.Temporal;
 
 public class VisitorPersonaje extends Visitor{
 	
@@ -32,10 +35,11 @@ public class VisitorPersonaje extends Visitor{
 		
 	}
 
-	@Override
 	public void visitarPremio(Premio premio) {
-		// TODO Auto-generated method stub
-		
+		premio.setActivado(true);
+		if(premio.isTemporal())
+			((Temporal)premio).empezarHilo();;
+		premio.getLabel().setVisible(false);
 	}
 
 }

@@ -16,7 +16,6 @@ public class VisitorDisparoSanitario extends Visitor {
 		DisparoSanitario aux = (DisparoSanitario) miEntidad;
 		infectado.recibirCura(aux.getDaño());
 		miEntidad.destruir();
-		System.out.println("Carga infectado:"+infectado.getCargaViral());
 	}
 
 	public void visitarPersonaje(Personaje personaje) {
