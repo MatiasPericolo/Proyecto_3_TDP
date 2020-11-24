@@ -18,6 +18,7 @@ public class Infectado extends Entidad{
 	protected int coordenadaX;
 	protected ArmaInfectado arma;
 	protected int resistencia;
+	protected String sonido;
 
 	
 	public Infectado(JLabel label) {
@@ -93,5 +94,13 @@ public class Infectado extends Entidad{
 
 	public void setVelocidad(int velocidad) {
 		this.velocidad = velocidad;
+	}
+	
+	public void setSonido(String sonido) {
+		this.sonido = sonido;
+	}
+	
+	public String getSonido() {
+		return sonido;
 	}
 }

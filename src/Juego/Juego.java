@@ -1,8 +1,14 @@
 package Juego;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -145,6 +151,21 @@ public class Juego {
 					cooldown++;
 		}
 		
+	}
+	
+	public void reproducirSonido(Clip clip) {
+		String sonido;
+		int random = (int) Math.floor(Math.random()*listaEntidades.size());
+		try {
+			if(listaEntidades.get(random).getTipo()=="Infectado") {
+				sonido = ((Infectado)listaEntidades.get(random)).getSonido();
+				clip.open(AudioSystem.getAudioInputStream(new File(sonido)));
+				clip.start();
+			}
+		}
+		catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public boolean checkearJuegoTerminado() {

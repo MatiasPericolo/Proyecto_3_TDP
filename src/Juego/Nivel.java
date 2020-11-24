@@ -5,6 +5,7 @@ import Hilos.HiloCheckeoColisiones;
 import Hilos.HiloCheckeoPremios;
 import Hilos.HiloCreadorInfectados;
 import Hilos.HiloMoverInfectados;
+import Hilos.HiloSonidoInfectados;
 
 public class Nivel {
 
@@ -13,6 +14,7 @@ public class Nivel {
 	protected HiloMoverInfectados hiloMovimiento;
 	protected HiloCheckeoColisiones hiloColisiones;
 	protected HiloCheckeoPremios hiloPremios;
+	protected HiloSonidoInfectados hiloSonido;
 	protected Juego juego;
 	
 	public Nivel(int cantInfectados,Juego juego) {
@@ -22,6 +24,7 @@ public class Nivel {
 		hiloMovimiento=new HiloMoverInfectados(juego);
 		hiloColisiones=new HiloCheckeoColisiones(juego);
 		hiloPremios=new HiloCheckeoPremios(juego) ;
+		hiloSonido=new HiloSonidoInfectados(juego);
 	}
 	
 	public void iniciarJuego() {
@@ -30,6 +33,7 @@ public class Nivel {
 		hiloMovimiento.start();
 		hiloColisiones.start();
 		hiloPremios.start();
+		hiloSonido.start();
 	}
 
 	public void cortarHilos() {
@@ -37,5 +41,6 @@ public class Nivel {
 		hiloMovimiento.detenerHilo();
 		hiloColisiones.detenerHilo();
 		hiloPremios.detenerHilo();
+		hiloSonido.detenerHilo();
 	}
 }

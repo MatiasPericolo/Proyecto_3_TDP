@@ -11,8 +11,6 @@ public class Alfa extends Infectado{
 		velocidad=10;
 		arma=new ArmaInfectado(velocidad*10, 5, 20, "Sprites\\Disparos\\DisparoAlfa.png");
 		resistencia = 1;
+		sonido = "Sonidos\\Alfa.wav";
 	}
-	
-	
-	
 }

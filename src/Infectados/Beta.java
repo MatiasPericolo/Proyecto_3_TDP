@@ -11,6 +11,7 @@ public class Beta extends Infectado{
 		velocidad=10;
 		arma=new ArmaInfectado(velocidad*10, 5, 20, "Sprites\\Disparos\\DisparoBeta.png");
 		resistencia = 2;
+		sonido = "Sonidos\\Beta.wav";
 	}	
 	
 }
