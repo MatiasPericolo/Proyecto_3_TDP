@@ -14,6 +14,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private JFrame ventanaElegirNivel;
 	private JPanel panelElegirNivel;
+	protected JLabel wallpaper;
 
 	/**
 	 * Launch the application.
@@ -52,6 +53,11 @@ public class VentanaPrincipal extends JFrame {
 		getContentPane().add(botonSalir);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setBounds(300, 100, 1200, 770);
+		
+		wallpaper = new JLabel();
+		wallpaper.setIcon(new ImageIcon("Sprites\\Juego\\wallpaper.jpg"));
+		wallpaper.setBounds(0, 0, 1200, 770);
+		getContentPane().add(wallpaper);
 	}
 	
 	class oyenteElegirNivel implements ActionListener{
@@ -87,7 +93,7 @@ public class VentanaPrincipal extends JFrame {
 			panelElegirNivel.add(btnNivelDos);
 			
 			//Creo el fondo
-			fondo=new JLabel(new ImageIcon("Sprites\\\\fondo.jpg"));
+			fondo=new JLabel(new ImageIcon("Sprites\\fondo.jpg"));
 			panelElegirNivel.add(fondo);
 			fondo.setBounds(0,0,400,300);
 			fondo.setVisible(true);
