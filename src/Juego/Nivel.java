@@ -31,4 +31,11 @@ public class Nivel {
 		hiloColisiones.start();
 		hiloPremios.start();
 	}
+
+	public void cortarHilos() {
+		hiloCreador.detenerHilo();
+		hiloMovimiento.detenerHilo();
+		hiloColisiones.detenerHilo();
+		hiloPremios.detenerHilo();
+	}
 }

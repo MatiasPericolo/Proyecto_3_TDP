@@ -8,8 +8,10 @@ public class HiloCreadorInfectados extends Thread{
 	protected boolean run;
 	private int cantInfectados;
 	private int finOleada;
+	private boolean generar;
 	
 	public HiloCreadorInfectados(Juego juego, int cantidadInfectados) {
+		generar=true;
 		cantInfectados=cantidadInfectados;
 		finOleada=cantInfectados/2;
 		this.juego=juego;
@@ -27,12 +29,17 @@ public class HiloCreadorInfectados extends Thread{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			cantInfectados--;
-			juego.generarEnemigoAleatorio();
 			
-			if(cantInfectados==0)
-				run=false;
-			if(finOleada==cantInfectados)
+			if(generar) {
+				cantInfectados--;
+				juego.generarEnemigoAleatorio();
+			}
+			
+			if(cantInfectados==0) {
+				generar=false;
+				if(juego.checkearJuegoTerminado())
+					juego.finalizar();
+			}if(finOleada==cantInfectados)
 				try {
 					Thread.sleep(10000);
 				} catch (InterruptedException e) {
