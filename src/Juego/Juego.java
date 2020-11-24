@@ -54,7 +54,7 @@ public class Juego {
 	
 	public void crearPremio(int x, int y) {
 		Premio premio;
-		int random = 1;//(int) Math.floor(Math.random()*3);
+		int random = (int) Math.floor(Math.random()*3);
 		if(random == 0) {
 			premio=new Cuarentena(x,y,3000);
 		} else if(random == 1) {
@@ -147,4 +147,18 @@ public class Juego {
 		
 	}
 	
+	public boolean checkearJuegoTerminado() {
+		boolean termino=true;
+		for(int i=0;i<listaEntidades.size() && termino;i++) {
+			if(listaEntidades.get(i).getTipo()=="Infectado")
+				termino=false;
+		}
+		
+		return termino;
+		
+	}
+	
+	public void finalizar() {
+		gui.terminar();
+	}
 }

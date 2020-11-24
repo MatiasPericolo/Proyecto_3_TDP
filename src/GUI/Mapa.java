@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
@@ -19,6 +20,19 @@ public class Mapa extends JFrame {
 	
 	protected Juego juego;
 
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Mapa frame = new Mapa(4);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	public Mapa(int nivel) {
 		
 		juego=new Juego(this);
@@ -60,6 +74,11 @@ public class Mapa extends JFrame {
 	
 	public Juego getJuego() {
 		return juego;
+	}
+	
+	public void terminar() {
+		nivelActual.cortarHilos();
+		//Mostrar PNG de victoria
 	}
 	
 	class teclasListener implements KeyListener{
