@@ -77,7 +77,8 @@ public class Mapa extends JFrame {
         	}
         	
         	if(arg0.getKeyCode() == KeyEvent.VK_SPACE) {
-        		juego.generarDisparo(personaje.disparar());
+        		if(personaje.isPermisoParaDisparar())
+        			juego.generarDisparo(personaje.disparar());
         	}
         	
         }

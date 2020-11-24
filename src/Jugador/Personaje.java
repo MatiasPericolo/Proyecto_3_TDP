@@ -21,6 +21,7 @@ public class Personaje extends Entidad{
 	protected HiloControles control;
 	protected boolean quieto;
 	protected Arma arma,armaGuardada;
+	protected boolean permisoParaDisparar;
 	
 	public Arma getArmaGuardada() {
 		return armaGuardada;
@@ -34,7 +35,7 @@ public class Personaje extends Entidad{
 		visitor=new VisitorPersonaje(this);
 		tipo="Personaje";
 		this.label=label;
-		control = new HiloControles(label);
+		control = new HiloControles(this);
 		control.start();
 		cargaViral=0;
 		velocidad=10;
@@ -42,6 +43,7 @@ public class Personaje extends Entidad{
 		direccion = "Derecha";
 		quieto = true;
 		arma=new ArmaSanitaria(10,10,"Sprites\\Disparos\\DisparoPersonaje.png");
+		permisoParaDisparar=true;
 	}
 
 	public int getCargaViral() {
@@ -109,13 +111,46 @@ public class Personaje extends Entidad{
 	}
 
 	public DisparoSanitario disparar() {
-		quieto();
-		ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif");	
-		label.setIcon(icon);
-		label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());	
-		DisparoSanitario disparo=(DisparoSanitario)arma.crearDisparo(label.getX()+(label.getWidth()/2),label.getY());
+			permisoParaDisparar=false;
+			quieto();
+			ImageIcon icon = new ImageIcon("Sprites\\Personaje e Infectados\\personajeDisparando"+direccion+".gif");	
+			label.setIcon(icon);
+			label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());	
+			DisparoSanitario disparo=(DisparoSanitario)arma.crearDisparo(label.getX()+(label.getWidth()/2),label.getY());
 		
 		return disparo;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public HiloControles getControl() {
+		return control;
+	}
+
+	public void setControl(HiloControles control) {
+		this.control = control;
+	}
+
+	public boolean isQuieto() {
+		return quieto;
+	}
+
+	public void setQuieto(boolean quieto) {
+		this.quieto = quieto;
+	}
+
+	public boolean isPermisoParaDisparar() {
+		return permisoParaDisparar;
+	}
+
+	public void setPermisoParaDisparar(boolean permisoParaDisparar) {
+		this.permisoParaDisparar = permisoParaDisparar;
 	}
 
 	public void mover() {
