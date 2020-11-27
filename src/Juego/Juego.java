@@ -30,17 +30,26 @@ public class Juego {
 	protected List<Entidad> listaEntidades;
 	protected List<Premio> listaPremios;
 	protected Mapa gui;
-	protected int cooldown;
+	protected int cooldownDisparoInfectados;
+	protected int cooldownDisparoPersonaje;
 	
 	public Juego(Mapa gui) {
 		this.gui=gui;
 		listaEntidades=new LinkedList<Entidad>();
 		listaPremios=new LinkedList<Premio>();
-		cooldown=0;
+		cooldownDisparoInfectados=0;
+		cooldownDisparoPersonaje=0;
 	}
 	
 	public void agregarPersonaje(Personaje personaje) {
 		listaEntidades.add(personaje);
+	}
+	
+	public void hiloGeneral() {
+		mover();
+		checkearColision();
+		activarPremios();
+		comprobarPermiso();
 	}
 	
 	public void generarEnemigoAleatorio() {
@@ -144,11 +153,11 @@ public class Juego {
 		for(int i=0;i<listaEntidades.size();i++) {
 			listaEntidades.get(i).mover();
 			if(listaEntidades.get(i).getTipo()=="Infectado")
-				if(cooldown==10) {
+				if(cooldownDisparoInfectados==10) {
 					generarDisparo(((Infectado)listaEntidades.get(i)).disparar());
-					cooldown=0;
+					cooldownDisparoInfectados=0;
 				}else
-					cooldown++;
+					cooldownDisparoInfectados++;
 		}
 		
 	}
@@ -166,6 +175,16 @@ public class Juego {
 		catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void comprobarPermiso() {
+		
+		if(((Personaje)listaEntidades.get(0)).isPermisoParaDisparar()==false)
+			if(cooldownDisparoPersonaje==10) {
+				cooldownDisparoPersonaje=0;
+				((Personaje)listaEntidades.get(0)).setPermisoParaDisparar(true);
+			}else
+				cooldownDisparoPersonaje++;
 	}
 	
 	public boolean checkearJuegoTerminado() {

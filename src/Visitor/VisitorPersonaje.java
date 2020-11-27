@@ -38,7 +38,7 @@ public class VisitorPersonaje extends Visitor{
 	public void visitarPremio(Premio premio) {
 		premio.setActivado(true);
 		if(premio.isTemporal())
-			((Temporal)premio).empezarHilo();;
+			((Temporal)premio).empezarHilo();
 		premio.getLabel().setVisible(false);
 	}
 

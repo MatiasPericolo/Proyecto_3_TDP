@@ -1,19 +1,14 @@
 package Juego;
 
-import GUI.Mapa;
-import Hilos.HiloCheckeoColisiones;
-import Hilos.HiloCheckeoPremios;
 import Hilos.HiloCreadorInfectados;
-import Hilos.HiloMoverInfectados;
+import Hilos.HiloGeneral;
 import Hilos.HiloSonidoInfectados;
 
 public class Nivel {
 
 	protected int cantidadInfectados;
 	protected HiloCreadorInfectados hiloCreador;
-	protected HiloMoverInfectados hiloMovimiento;
-	protected HiloCheckeoColisiones hiloColisiones;
-	protected HiloCheckeoPremios hiloPremios;
+	protected HiloGeneral hiloGeneral;
 	protected HiloSonidoInfectados hiloSonido;
 	protected Juego juego;
 	
@@ -21,26 +16,20 @@ public class Nivel {
 		this.juego=juego;
 		cantidadInfectados=cantInfectados;
 		hiloCreador=new HiloCreadorInfectados(juego,cantidadInfectados);
-		hiloMovimiento=new HiloMoverInfectados(juego);
-		hiloColisiones=new HiloCheckeoColisiones(juego);
-		hiloPremios=new HiloCheckeoPremios(juego) ;
-		hiloSonido=new HiloSonidoInfectados(juego);
+		hiloGeneral=new HiloGeneral(juego);
+		//hiloSonido=new HiloSonidoInfectados(juego);
 	}
 	
 	public void iniciarJuego() {
 		
 		hiloCreador.start();
-		hiloMovimiento.start();
-		hiloColisiones.start();
-		hiloPremios.start();
-		hiloSonido.start();
+		hiloGeneral.start();
+		//hiloSonido.start();
 	}
 
 	public void cortarHilos() {
 		hiloCreador.detenerHilo();
-		hiloMovimiento.detenerHilo();
-		hiloColisiones.detenerHilo();
-		hiloPremios.detenerHilo();
-		hiloSonido.detenerHilo();
+		hiloGeneral.detenerHilo();
+		//hiloSonido.detenerHilo();
 	}
 }
