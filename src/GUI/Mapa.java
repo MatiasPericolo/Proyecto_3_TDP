@@ -33,10 +33,10 @@ public class Mapa extends JFrame {
 		});
 	}
 	
-	public Mapa(int nivel) {
+	public Mapa(int dificultad) {
 		
-		juego=new Juego(this);
-		nivelActual=new Nivel(nivel,juego);
+		juego=new Juego(this,dificultad);
+		nivelActual=new Nivel(juego);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +53,7 @@ public class Mapa extends JFrame {
 		juego.agregarPersonaje(personaje);
 		
 		mapaImagen=new JLabel();
-		if(nivel==10)
+		if(dificultad==10)
 			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_1.jpg"));
 		else
 			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_2.jpg"));

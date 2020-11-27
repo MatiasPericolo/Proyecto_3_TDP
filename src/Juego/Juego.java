@@ -4,14 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 import Disparos.Disparo;
 import GUI.Mapa;
 import Infectados.Alfa;
@@ -19,11 +17,9 @@ import Infectados.Beta;
 import Infectados.Infectado;
 import Jugador.Personaje;
 import Premios.Cuarentena;
-import Premios.ObjetoPrecioso;
 import Premios.Pocion;
 import Premios.Premio;
 import Premios.SuperArma;
-import Premios.Temporal;
 
 public class Juego {
 
@@ -32,13 +28,21 @@ public class Juego {
 	protected Mapa gui;
 	protected int cooldownDisparoInfectados;
 	protected int cooldownDisparoPersonaje;
+	protected int cooldownOleadaInfectados;
+	protected int cantidadInfectados;
+	protected int finOleada;
+	protected boolean generarInfectado;
 	
-	public Juego(Mapa gui) {
+	public Juego(Mapa gui,int dificultad) {
 		this.gui=gui;
+		cantidadInfectados=dificultad;
+		finOleada=cantidadInfectados/2;
+		generarInfectado=true;
 		listaEntidades=new LinkedList<Entidad>();
 		listaPremios=new LinkedList<Premio>();
 		cooldownDisparoInfectados=0;
 		cooldownDisparoPersonaje=0;
+		cooldownOleadaInfectados=0;
 	}
 	
 	public void agregarPersonaje(Personaje personaje) {
@@ -50,6 +54,32 @@ public class Juego {
 		checkearColision();
 		activarPremios();
 		comprobarPermiso();
+		controlDeOleadas();
+	}
+	
+	public void controlDeOleadas() {
+		boolean esperar=false;;
+		
+		if(finOleada==cantidadInfectados)
+			if(cooldownOleadaInfectados<100) {
+				esperar=true;
+				cooldownOleadaInfectados++;
+			}
+		
+		if(!esperar) {
+			if(generarInfectado) {
+				cantidadInfectados--;
+				generarEnemigoAleatorio();
+			}
+			
+			if(cantidadInfectados==0) {
+				generarInfectado=false;
+				if(checkearJuegoTerminado())
+					finalizar();
+			}
+		}
+		
+			
 	}
 	
 	public void generarEnemigoAleatorio() {
@@ -180,7 +210,7 @@ public class Juego {
 	public void comprobarPermiso() {
 		
 		if(((Personaje)listaEntidades.get(0)).isPermisoParaDisparar()==false)
-			if(cooldownDisparoPersonaje==10) {
+			if(cooldownDisparoPersonaje==4) {
 				cooldownDisparoPersonaje=0;
 				((Personaje)listaEntidades.get(0)).setPermisoParaDisparar(true);
 			}else
