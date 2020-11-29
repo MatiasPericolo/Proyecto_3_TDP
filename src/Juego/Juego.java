@@ -1,9 +1,14 @@
 package Juego;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.imageio.IIOException;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -192,19 +197,30 @@ public class Juego {
 		
 	}
 	
-	public void reproducirSonido(Clip clip) {
-		String sonido;
-		int random = (int) Math.floor(Math.random()*listaEntidades.size());
-		try {
-			if(listaEntidades.get(random).getTipo()=="Infectado") {
-				sonido = ((Infectado)listaEntidades.get(random)).getSonido();
-				clip.open(AudioSystem.getAudioInputStream(new File(sonido)));
-				clip.start();
-			}
-		}
-		catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		}
+	public void reproducirSonido() {
+		
+			TimerTask tarea = new TimerTask() {
+				String sonido;
+				Clip clip;
+				public void run() {
+					try {
+						int random = (int) Math.floor(Math.random()*listaEntidades.size());
+						if(listaEntidades.get(random).getTipo()=="Infectado") {
+							sonido = ((Infectado)listaEntidades.get(random)).getSonido();
+							clip = AudioSystem.getClip();
+							clip.open(AudioSystem.getAudioInputStream(new File(sonido)));
+							clip.start();
+						}
+						
+					}
+					catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+						e.printStackTrace();
+					}
+				}
+			};
+			Timer temporizador = new Timer();
+			temporizador.schedule(tarea, 0, 3000);
+		
 	}
 	
 	public void comprobarPermiso() {
