@@ -3,6 +3,10 @@ package GUI;
 import java.awt.EventQueue;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.TimerTask;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,10 +57,13 @@ public class Mapa extends JFrame {
 		juego.agregarPersonaje(personaje);
 		
 		mapaImagen=new JLabel();
-		if(dificultad==10)
+		if(dificultad==10) {
 			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_1.jpg"));
-		else
+		}
+		else {
 			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_2.jpg"));
+			juego.iniciarMusicaNivel(2);
+		}
 		mapaImagen.setBounds(0, 0, 800, 1000);
 		getContentPane().add(mapaImagen);
 		

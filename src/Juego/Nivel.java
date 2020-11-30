@@ -15,11 +15,11 @@ public class Nivel {
 	public void iniciarJuego() {
 		
 		hiloGeneral.start();
-		juego.reproducirSonido();
 	}
 
 	public void cortarHilos() {
 		//hiloCreador.detenerHilo();
 		hiloGeneral.detenerHilo();
+		//hiloSonido.detenerHilo();
 	}
 }

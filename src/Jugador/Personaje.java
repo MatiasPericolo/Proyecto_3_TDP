@@ -1,5 +1,12 @@
 package Jugador;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -97,6 +104,14 @@ public class Personaje extends Entidad{
 			label.setIcon(icon);
 			label.setBounds(label.getX(), label.getY(), icon.getIconWidth(), icon.getIconHeight());	
 			DisparoSanitario disparo=(DisparoSanitario)arma.crearDisparo(label.getX()+(label.getWidth()/2),label.getY());
+			try {
+				Clip clip = AudioSystem.getClip();
+				clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\DisparoSanitario.wav")));
+				clip.start();
+			}
+			catch(IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
 			
 			
 		return disparo;

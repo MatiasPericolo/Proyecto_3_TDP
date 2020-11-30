@@ -197,7 +197,7 @@ public class Juego {
 		
 	}
 	
-	public void reproducirSonido() {
+	public void reproducirSonidoInfectados() {
 		
 			TimerTask tarea = new TimerTask() {
 				String sonido;
@@ -221,6 +221,23 @@ public class Juego {
 			Timer temporizador = new Timer();
 			temporizador.schedule(tarea, 0, 3000);
 		
+	}
+	
+	public void iniciarMusicaNivel(int nivel) {
+		TimerTask tarea = new TimerTask() {
+			public void run() {
+				try {
+					Clip clip = AudioSystem.getClip();
+					clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));
+					clip.start();
+				}
+				catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		Timer temporizador = new Timer();
+		temporizador.schedule(tarea, 0, 198000);
 	}
 	
 	public void comprobarPermiso() {

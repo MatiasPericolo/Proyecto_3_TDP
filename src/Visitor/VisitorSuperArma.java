@@ -1,5 +1,13 @@
 package Visitor;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import Arma.SuperArmaSanitaria;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
@@ -29,6 +37,14 @@ public class VisitorSuperArma extends Visitor{
 		if(((SuperArma)miEntidad).isActivado()) {
 			personaje.setArmaGuardada(personaje.getArma());
 			personaje.setArma(new SuperArmaSanitaria(10,10,"Sprites\\Disparos\\SuperDisparoPersonaje.png"));
+			try {
+				Clip clip = AudioSystem.getClip();
+				clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\HeavyMachineGun.wav")));
+				clip.start();
+			}
+			catch(IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			} 
 		}
 		if(((SuperArma)miEntidad).getTermino()) {
 			personaje.setArma(personaje.getArmaGuardada());
