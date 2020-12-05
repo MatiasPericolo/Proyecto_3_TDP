@@ -224,20 +224,15 @@ public class Juego {
 	}
 	
 	public void iniciarMusicaNivel(int nivel) {
-		TimerTask tarea = new TimerTask() {
-			public void run() {
-				try {
-					Clip clip = AudioSystem.getClip();
-					clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));
-					clip.start();
-				}
-				catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-					e.printStackTrace();
-				}
-			}
-		};
-		Timer temporizador = new Timer();
-		temporizador.schedule(tarea, 0, 198000);
+		try {
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));
+			clip.loop(clip.LOOP_CONTINUOUSLY);
+		}
+		catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public void comprobarPermiso() {
