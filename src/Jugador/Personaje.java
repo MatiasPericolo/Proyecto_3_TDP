@@ -154,7 +154,7 @@ public class Personaje extends Entidad{
 	}
 	
 	public void destruir() {
-		
+		label.setVisible(false);
 	}
 	
 	public void setArma(Arma arma) {

@@ -20,7 +20,8 @@ public class VisitorPersonaje extends Visitor{
 	public void visitarInfectado(Infectado infectado) {
 		Personaje aux = (Personaje) miEntidad;
 		aux.recibirVirus(100);
-				
+		if(aux.getCargaViral()>100)
+			aux.destruir();
 	}
 
 	public void visitarPersonaje(Personaje personaje) {
@@ -28,7 +29,10 @@ public class VisitorPersonaje extends Visitor{
 	}
 
 	public void visitarDisparoInfectado(DisparoInfectado disparo) {
-		
+		Personaje aux = (Personaje) miEntidad;
+		aux.recibirVirus(disparo.getDaño());
+		if(aux.getCargaViral()>100)
+			aux.destruir();
 	}
 
 	public void visitarDisparoSanitario(DisparoSanitario disparo) {

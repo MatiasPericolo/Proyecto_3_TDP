@@ -28,7 +28,7 @@ public class Mapa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mapa frame = new Mapa(4);
+					Mapa frame = new Mapa(2);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -83,9 +83,22 @@ public class Mapa extends JFrame {
 		return juego;
 	}
 	
-	public void terminar() {
+	public void terminar(boolean gano) {
 		nivelActual.cortarHilos();
-		//Mostrar PNG de victoria
+		setVisible(false);
+		JFrame frame = new JFrame();
+		JLabel fondo=new JLabel();
+		ImageIcon imagen;
+		if(gano)
+			imagen=new ImageIcon("Sprites\\Juego\\victoria.jpg");
+		else
+			imagen=new ImageIcon("Sprites\\Juego\\derrota.jpg");
+		frame.setBounds(0,0,imagen.getIconWidth(),imagen.getIconHeight());
+		fondo.setBounds(0,0,imagen.getIconWidth(),imagen.getIconHeight() );
+		fondo.setIcon(imagen);
+		frame.add(fondo);
+		frame.setVisible(true);
+		
 	}
 	
 	class teclasListener implements KeyListener{

@@ -37,6 +37,7 @@ public class Juego {
 	protected int cantidadInfectados;
 	protected int finOleada;
 	protected boolean generarInfectado;
+	protected Clip clip;
 	
 	public Juego(Mapa gui,int dificultad) {
 		this.gui=gui;
@@ -56,10 +57,10 @@ public class Juego {
 	
 	public void hiloGeneral() {
 		mover();
-		checkearColision();
 		activarPremios();
 		comprobarPermiso();
 		controlDeOleadas();
+		checkearColision();
 	}
 	
 	public void controlDeOleadas() {
@@ -80,7 +81,7 @@ public class Juego {
 			if(cantidadInfectados==0) {
 				generarInfectado=false;
 				if(checkearJuegoTerminado())
-					finalizar();
+					finalizar(true);
 			}
 		}
 		
@@ -151,6 +152,8 @@ public class Juego {
 						crearPremio(listaEntidades.get(i).getLabel().getX(),listaEntidades.get(i).getLabel().getY());
 					}						
 					listaEntidades.remove(i);
+					if(i==0)
+						finalizar(false);
 				}
 				if(!listaEntidades.get(j).getLabel().isVisible()) {
 					if(listaEntidades.get(j).getTipo() == "Infectado") {
@@ -225,7 +228,7 @@ public class Juego {
 	
 	public void iniciarMusicaNivel(int nivel) {
 		try {
-			Clip clip = AudioSystem.getClip();
+			clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));
 			clip.loop(clip.LOOP_CONTINUOUSLY);
 		}
@@ -256,7 +259,8 @@ public class Juego {
 		
 	}
 	
-	public void finalizar() {
-		gui.terminar();
+	public void finalizar(boolean victoria) {
+		clip.stop();  
+		gui.terminar(victoria);
 	}
 }
