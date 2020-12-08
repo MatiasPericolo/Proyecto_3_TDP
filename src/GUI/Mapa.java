@@ -1,6 +1,8 @@
 package GUI;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.TimerTask;
@@ -8,8 +10,12 @@ import java.util.TimerTask;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import GUI.VentanaPrincipal.oyenteDificultadFacil;
 import Juego.Juego;
 import Juego.Nivel;
 import Jugador.Personaje;
@@ -23,12 +29,12 @@ public class Mapa extends JFrame {
 	protected Nivel nivelActual;
 	
 	protected Juego juego;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mapa frame = new Mapa(2);
+					Mapa frame = new Mapa(1);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -84,21 +90,30 @@ public class Mapa extends JFrame {
 	}
 	
 	public void terminar(boolean gano) {
-		nivelActual.cortarHilos();
-		setVisible(false);
-		JFrame frame = new JFrame();
-		JLabel fondo=new JLabel();
-		ImageIcon imagen;
-		if(gano)
-			imagen=new ImageIcon("Sprites\\Juego\\victoria.jpg");
-		else
-			imagen=new ImageIcon("Sprites\\Juego\\derrota.jpg");
-		frame.setBounds(0,0,imagen.getIconWidth(),imagen.getIconHeight());
-		fondo.setBounds(0,0,imagen.getIconWidth(),imagen.getIconHeight() );
-		fondo.setIcon(imagen);
-		frame.add(fondo);
-		frame.setVisible(true);
 		
+			nivelActual.cortarHilos();
+			setVisible(false);
+			JFrame frame = new JFrame();
+			JLabel fondo=new JLabel();
+			ImageIcon imagen;
+			if(gano)
+				imagen=new ImageIcon("Sprites\\Juego\\victoria.jpg");
+			else
+				imagen=new ImageIcon("Sprites\\Juego\\derrota.jpg");
+			frame.setBounds(0,0,imagen.getIconWidth(),imagen.getIconHeight());
+			fondo.setBounds(0,0,imagen.getIconWidth(),imagen.getIconHeight() );
+			fondo.setIcon(imagen);
+			frame.add(fondo);
+			JButton cerrar=new JButton("Cerrar");
+			cerrar.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent arg0) {
+					System.exit(0);				
+				}
+			});
+			cerrar.setBounds(275, 250, 100, 20);
+			fondo.add(cerrar);
+			frame.setVisible(true);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	class teclasListener implements KeyListener{

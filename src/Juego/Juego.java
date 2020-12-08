@@ -38,6 +38,7 @@ public class Juego {
 	protected int finOleada;
 	protected boolean generarInfectado;
 	protected Clip clip;
+	protected TimerTask tarea;
 	
 	public Juego(Mapa gui,int dificultad) {
 		this.gui=gui;
@@ -154,8 +155,7 @@ public class Juego {
 					listaEntidades.remove(i);
 					if(i==0)
 						finalizar(false);
-				}
-				if(!listaEntidades.get(j).getLabel().isVisible()) {
+				} else if(!listaEntidades.get(j).getLabel().isVisible()) {
 					if(listaEntidades.get(j).getTipo() == "Infectado") {
 						crearPremio(listaEntidades.get(j).getLabel().getX(),listaEntidades.get(j).getLabel().getY());
 					}
@@ -202,7 +202,7 @@ public class Juego {
 	
 	public void reproducirSonidoInfectados() {
 		
-			TimerTask tarea = new TimerTask() {
+			tarea = new TimerTask() {
 				String sonido;
 				Clip clip;
 				public void run() {
@@ -230,7 +230,7 @@ public class Juego {
 		try {
 			clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));
-			clip.loop(clip.LOOP_CONTINUOUSLY);
+			clip.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
 			e.printStackTrace();
@@ -260,7 +260,8 @@ public class Juego {
 	}
 	
 	public void finalizar(boolean victoria) {
-		clip.stop();  
+		clip.stop();
+		tarea.cancel();
 		gui.terminar(victoria);
 	}
 }
