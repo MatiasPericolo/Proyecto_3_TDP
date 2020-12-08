@@ -50,6 +50,7 @@ public class Juego {
 		cooldownDisparoInfectados=0;
 		cooldownDisparoPersonaje=0;
 		cooldownOleadaInfectados=0;
+		iniciarMusicaNivel(dificultad/10);
 	}
 	
 	public void agregarPersonaje(Personaje personaje) {
@@ -227,6 +228,7 @@ public class Juego {
 	}
 	
 	public void iniciarMusicaNivel(int nivel) {
+		System.out.println(nivel);
 		try {
 			clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));

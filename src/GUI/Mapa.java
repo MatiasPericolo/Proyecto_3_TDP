@@ -68,7 +68,7 @@ public class Mapa extends JFrame {
 		}
 		else {
 			mapaImagen.setIcon(new ImageIcon("Sprites\\Juego\\mapa_nivel_2.jpg"));
-			juego.iniciarMusicaNivel(2);
+			
 		}
 		mapaImagen.setBounds(0, 0, 800, 1000);
 		getContentPane().add(mapaImagen);
