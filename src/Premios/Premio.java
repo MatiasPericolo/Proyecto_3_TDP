@@ -68,6 +68,7 @@ public class Premio extends Entidad {
 	}
 
 	public void destruir() {
+		termino=true;
 		label.setVisible(false);
 	}
 

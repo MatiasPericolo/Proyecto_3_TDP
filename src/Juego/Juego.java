@@ -181,8 +181,6 @@ public class Juego {
 	}
 	
 	public void activarPremios() {
-		
-		
 		if(!listaPremios.isEmpty()) {
 			for(int i=0;i<listaPremios.size();i++) {
 				for(int j=0;j<listaEntidades.size();j++) {
@@ -198,6 +196,7 @@ public class Juego {
 					listaPremios.remove(i);
 					i--;
 				}
+					
 			}
 		}
 	}
