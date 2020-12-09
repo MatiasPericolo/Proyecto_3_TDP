@@ -8,6 +8,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import Arma.ArmaSanitaria;
 import Arma.SuperArmaSanitaria;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
@@ -35,7 +36,6 @@ public class VisitorSuperArma extends Visitor{
 
 	public void visitarPersonaje(Personaje personaje) {
 		if(((SuperArma)miEntidad).isActivado()) {
-			personaje.setArmaGuardada(personaje.getArma());
 			personaje.setArma(new SuperArmaSanitaria(10,10,"Sprites\\Disparos\\SuperDisparoPersonaje.png"));
 			try {
 				Clip clip = AudioSystem.getClip();
@@ -47,7 +47,7 @@ public class VisitorSuperArma extends Visitor{
 			} 
 		}
 		if(((SuperArma)miEntidad).getTermino()) {
-			personaje.setArma(personaje.getArmaGuardada());
+			personaje.setArma(new ArmaSanitaria(10,10,"Sprites\\Disparos\\DisparoPersonaje.png"));
 		}
 		
 	}

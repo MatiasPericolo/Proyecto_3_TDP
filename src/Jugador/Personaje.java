@@ -24,16 +24,8 @@ public class Personaje extends Entidad{
 	protected String sprite;
 	protected String direccion;
 	protected boolean quieto;
-	protected Arma arma,armaGuardada;
+	protected Arma arma;
 	protected boolean permisoParaDisparar;
-	
-	public Arma getArmaGuardada() {
-		return armaGuardada;
-	}
-
-	public void setArmaGuardada(Arma armaGuardada) {
-		this.armaGuardada = armaGuardada;
-	}
 
 	public Personaje(JLabel label) {
 		visitor=new VisitorPersonaje(this);
