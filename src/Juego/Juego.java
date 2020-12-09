@@ -36,6 +36,7 @@ public class Juego {
 	protected int cooldownOleadaInfectados;
 	protected int cantidadInfectados;
 	protected int finOleada;
+	protected int oleada;
 	protected boolean generarInfectado;
 	protected Clip clip;
 	protected TimerTask tarea;
@@ -51,6 +52,7 @@ public class Juego {
 		cooldownDisparoPersonaje=0;
 		cooldownOleadaInfectados=0;
 		iniciarMusicaNivel(dificultad/10);
+		oleada=1;
 	}
 	
 	public void agregarPersonaje(Personaje personaje) {
@@ -66,13 +68,16 @@ public class Juego {
 	}
 	
 	public void controlDeOleadas() {
-		boolean esperar=false;;
+		boolean esperar=false;
 		
-		if(finOleada==cantidadInfectados)
-			if(cooldownOleadaInfectados<100) {
-				esperar=true;
-				cooldownOleadaInfectados++;
-			}
+		if(finOleada==cantidadInfectados) 
+			esperar=true;
+		
+		if(esperar && checkearOleadaTerminada()) 
+			cooldownOleadaInfectados++;
+		
+		if(cooldownOleadaInfectados>=100)
+			esperar=false;
 		
 		if(!esperar) {
 			if(generarInfectado) {
@@ -262,7 +267,7 @@ public class Juego {
 				cooldownDisparoPersonaje++;
 	}
 	
-	public boolean checkearJuegoTerminado() {
+	public boolean checkearOleadaTerminada() {
 		boolean termino=true;
 		for(int i=0;i<listaEntidades.size() && termino;i++) {
 			if(listaEntidades.get(i).getTipo()=="Infectado")
@@ -271,6 +276,16 @@ public class Juego {
 		
 		return termino;
 		
+	}
+	
+	public boolean checkearJuegoTerminado() {
+		boolean termino=false;
+		if(oleada==2 && checkearOleadaTerminada())
+			termino=true;
+		else if(oleada==1 && checkearOleadaTerminada()) 
+			oleada++;
+		
+		return termino;
 	}
 	
 	public void finalizar(boolean victoria) {
