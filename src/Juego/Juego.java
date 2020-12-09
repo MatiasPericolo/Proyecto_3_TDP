@@ -103,7 +103,19 @@ public class Juego {
 		infectadoAux.getLabel().setIcon(icon);
 		gui.getContentPane().add(infectadoAux.getLabel(),0);
 		listaEntidades.add(infectadoAux);
-	}
+		checkearPremiosActivos(listaEntidades.get(listaEntidades.size()-1));
+    }
+
+    public void checkearPremiosActivos(Entidad infectado){
+
+        if(!listaPremios.isEmpty()) 
+            for(int i=0;i<listaPremios.size();i++) {
+                listaPremios.get(i).setActivado(true);
+                infectado.recibir(listaPremios.get(i).getVisitor());
+                listaPremios.get(i).setActivado(false);
+            }
+
+    }
 	
 	public void crearPremio(int x, int y) {
 		Premio premio;
