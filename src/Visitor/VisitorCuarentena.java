@@ -1,5 +1,13 @@
 package Visitor;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Infectados.Infectado;
@@ -17,6 +25,14 @@ public class VisitorCuarentena extends Visitor{
 	public void visitarInfectado(Infectado infectado) {
 		if(((Cuarentena)miEntidad).isActivado()) {
 			infectado.setEstadoActual(new EstadoQuieto(infectado));
+			try {
+				Clip clip = AudioSystem.getClip();
+				clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\DontMove.wav")));
+				clip.start();
+			}
+			catch(IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
 		}
 		if(((Cuarentena)miEntidad).getTermino()) {
 			infectado.setEstadoActual(infectado.recuperarEstado());

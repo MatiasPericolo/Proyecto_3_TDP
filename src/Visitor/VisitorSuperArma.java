@@ -1,23 +1,13 @@
 package Visitor;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-
 import Arma.ArmaSanitaria;
 import Arma.SuperArmaSanitaria;
 import Disparos.DisparoInfectado;
 import Disparos.DisparoSanitario;
 import Infectados.Infectado;
 import Jugador.Personaje;
-import Premios.Cuarentena;
 import Premios.Premio;
 import Premios.SuperArma;
-import States.EstadoQuieto;
 
 public class VisitorSuperArma extends Visitor{
 

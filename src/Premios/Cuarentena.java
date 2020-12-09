@@ -1,6 +1,12 @@
 package Premios;
 
-import javax.swing.JLabel;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Visitor.VisitorCuarentena;
 
@@ -11,6 +17,7 @@ public class Cuarentena extends Temporal {
 		efecto="Cuarentena";
 		sprite="Sprites\\Premios\\Cuarentena.png";
 		visitor=new VisitorCuarentena(this);
+		
 	}
 
 }
