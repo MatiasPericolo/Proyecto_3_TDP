@@ -3,7 +3,9 @@ package Infectados;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Arma.ArmaInfectado;
+import States.Estado;
 import States.EstadoBerserk;
+import States.EstadoNormal;
 
 public class Alfa extends Infectado{
 
@@ -21,12 +23,20 @@ public class Alfa extends Infectado{
 		cargaViral -= curaTotal;
 		if(cargaViral<=20 && (cargaViral+curaTotal)>20) {
 			estadoActual=new EstadoBerserk(this);
-			estadoGuardado=new EstadoBerserk(this);
 			//sprite="Sprites\\Personaje e Infectados\\InfectadoAlfaBerserk.gif";
 			//label.setIcon(new ImageIcon(sprite));
 		}
 		if(cargaViral <= 0) {
 			destruir();
 		}
+	}
+	
+	public Estado recuperarEstado() {
+		Estado state;
+		if(cargaViral<=20)
+			state=new EstadoBerserk(this);
+		else
+			state=new EstadoNormal(this);
+		return state;
 	}
 }

@@ -34,7 +34,7 @@ public class Mapa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Mapa frame = new Mapa(1);
+					Mapa frame = new Mapa(6);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

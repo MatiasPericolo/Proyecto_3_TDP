@@ -14,7 +14,7 @@ public class Infectado extends Entidad{
 	
 	protected int cargaViral;
 	protected int velocidad;
-	protected Estado estadoActual,estadoGuardado;
+	protected Estado estadoActual;
 	protected int coordenadaX;
 	protected ArmaInfectado arma;
 	protected int resistencia;
@@ -28,7 +28,6 @@ public class Infectado extends Entidad{
 		coordenadaX=((int) (Math.random()*720))-32;
 		estadoActual=new EstadoNormal(this);
 		this.label=label;
-		estadoGuardado=new EstadoNormal(this);
 	}
 
 	public DisparoInfectado disparar() {
@@ -63,14 +62,6 @@ public class Infectado extends Entidad{
 	public void setEstadoActual(Estado estadoActual) {
 		this.estadoActual = estadoActual;
 	}
-	
-	public Estado getEstadoGuardado() {
-		return estadoGuardado;
-	}
-
-	public void setEstadoGuardado(Estado estadoGuardado) {
-		this.estadoGuardado = estadoGuardado;
-	}
 
 	public int getCoordenadaX() {
 		return coordenadaX;
@@ -102,5 +93,9 @@ public class Infectado extends Entidad{
 	
 	public String getSonido() {
 		return sonido;
+	}
+	
+	public Estado recuperarEstado() {
+		return new EstadoNormal(this);
 	}
 }

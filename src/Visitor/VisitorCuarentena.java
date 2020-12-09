@@ -16,11 +16,10 @@ public class VisitorCuarentena extends Visitor{
 	
 	public void visitarInfectado(Infectado infectado) {
 		if(((Cuarentena)miEntidad).isActivado()) {
-			infectado.setEstadoGuardado(infectado.getEstadoActual());
 			infectado.setEstadoActual(new EstadoQuieto(infectado));
 		}
 		if(((Cuarentena)miEntidad).getTermino()) {
-			infectado.setEstadoActual(infectado.getEstadoGuardado());
+			infectado.setEstadoActual(infectado.recuperarEstado());
 		}
 		
 			
