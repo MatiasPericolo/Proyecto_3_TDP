@@ -1,5 +1,12 @@
 package Infectados;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JLabel;
 
 import Arma.ArmaInfectado;
@@ -46,6 +53,16 @@ public class Infectado extends Entidad{
 	
 	public void recibirCura(int cura) {
 		cargaViral -= cura/resistencia;
+		if(cargaViral == 80) {
+			try {
+				Clip clip = AudioSystem.getClip();
+				clip.open(AudioSystem.getAudioInputStream(new File(sonido)));
+				clip.start();
+			}
+			catch(IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+				e.printStackTrace();
+			}
+		}
 		if(cargaViral <= 0) {
 			destruir();
 		}

@@ -17,7 +17,6 @@ public class HiloGeneral extends Thread{
 	}
 
 	public void run() {
-		juego.reproducirSonidoInfectados();
 		while(run){
 			try {
 				Thread.sleep(100);

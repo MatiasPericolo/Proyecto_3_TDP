@@ -36,15 +36,7 @@ public class VisitorSuperArma extends Visitor{
 
 	public void visitarPersonaje(Personaje personaje) {
 		if(((SuperArma)miEntidad).isActivado()) {
-			personaje.setArma(new SuperArmaSanitaria(10,10,"Sprites\\Disparos\\SuperDisparoPersonaje.png"));
-			try {
-				Clip clip = AudioSystem.getClip();
-				clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\HeavyMachineGun.wav")));
-				clip.start();
-			}
-			catch(IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-				e.printStackTrace();
-			} 
+			personaje.setArma(new SuperArmaSanitaria(10,10,"Sprites\\Disparos\\SuperDisparoPersonaje.png")); 
 		}
 		if(((SuperArma)miEntidad).getTermino()) {
 			personaje.setArma(new ArmaSanitaria(10,10,"Sprites\\Disparos\\DisparoPersonaje.png"));

@@ -36,7 +36,6 @@ public class Juego {
 	protected int oleada;
 	protected boolean generarInfectado;
 	protected Clip clip;
-	protected TimerTask tarea;
 	
 	public Juego(Mapa gui,int dificultad) {
 		this.gui=gui;
@@ -205,38 +204,12 @@ public class Juego {
 		for(int i=0;i<listaEntidades.size();i++) {
 			listaEntidades.get(i).mover();
 			if(listaEntidades.get(i).isValiosa())
-				if(cooldownDisparoInfectados==10) {
+				if(cooldownDisparoInfectados==30) {
 					generarDisparo(((Infectado)listaEntidades.get(i)).disparar());
 					cooldownDisparoInfectados=0;
 				}else
 					cooldownDisparoInfectados++;
 		}
-		
-	}
-	
-	public void reproducirSonidoInfectados() {
-		
-			tarea = new TimerTask() {
-				String sonido;
-				Clip clip;
-				public void run() {
-					try {
-						int random = (int) Math.floor(Math.random()*listaEntidades.size());
-						if(listaEntidades.get(random).isValiosa()) {
-							sonido = ((Infectado)listaEntidades.get(random)).getSonido();
-							clip = AudioSystem.getClip();
-							clip.open(AudioSystem.getAudioInputStream(new File(sonido)));
-							clip.start();
-						}
-						
-					}
-					catch(LineUnavailableException | IOException | UnsupportedAudioFileException e) {
-						e.printStackTrace();
-					}
-				}
-			};
-			Timer temporizador = new Timer();
-			temporizador.schedule(tarea, 0, 3000);
 		
 	}
 	
@@ -286,7 +259,6 @@ public class Juego {
 	
 	public void finalizar(boolean victoria) {
 		clip.stop();
-		tarea.cancel();
 		gui.terminar(victoria);
 	}
 }
