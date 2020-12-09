@@ -29,7 +29,6 @@ public class Personaje extends Entidad{
 
 	public Personaje(JLabel label) {
 		visitor=new VisitorPersonaje(this);
-		tipo="Personaje";
 		this.label=label;
 		cargaViral=0;
 		velocidad=10;
@@ -38,6 +37,7 @@ public class Personaje extends Entidad{
 		quieto = true;
 		arma=new ArmaSanitaria(10,10,"Sprites\\Disparos\\DisparoPersonaje.png");
 		permisoParaDisparar=true;
+		valiosa=false;
 	}
 
 	public int getCargaViral() {

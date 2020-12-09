@@ -24,8 +24,8 @@ public class Premio extends Entidad {
 		coordenadaX=x;
 		coordenadaY=y;
 		activado=false;
-		tipo="Premio";
 		termino=false;
+		valiosa=false;
 	}
 	
 	public boolean getTermino() {

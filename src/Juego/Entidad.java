@@ -8,19 +8,14 @@ public abstract class Entidad {
 
 	protected JLabel label;
 	protected String sprite;
-	protected String tipo;
 	protected Visitor visitor;
+	protected boolean valiosa;
 	
+	public boolean isValiosa() {
+		return valiosa;
+	}
 	public abstract void mover();
 	public abstract void destruir();
-	
-	public String getTipo() {
-		return tipo;
-	}
-	
-	public void setTipo(String tipo) {
-		this.tipo=tipo;
-	}
 	
 	public JLabel getLabel() {
 		return label;

@@ -1,14 +1,11 @@
 package Juego;
 
-import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import javax.imageio.IIOException;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
@@ -167,14 +164,14 @@ public class Juego {
 					listaEntidades.get(j).recibir(listaEntidades.get(i).getVisitor());
 				
 				if(!listaEntidades.get(i).getLabel().isVisible()) {
-					if(listaEntidades.get(i).getTipo() == "Infectado") {
+					if(listaEntidades.get(i).isValiosa()) {
 						crearPremio(listaEntidades.get(i).getLabel().getX(),listaEntidades.get(i).getLabel().getY());
 					}						
 					listaEntidades.remove(i);
 					if(i==0)
 						finalizar(false);
 				} else if(!listaEntidades.get(j).getLabel().isVisible()) {
-					if(listaEntidades.get(j).getTipo() == "Infectado") {
+					if(listaEntidades.get(j).isValiosa()) {
 						crearPremio(listaEntidades.get(j).getLabel().getX(),listaEntidades.get(j).getLabel().getY());
 					}
 					listaEntidades.remove(j);
@@ -208,7 +205,7 @@ public class Juego {
 	public void mover() {
 		for(int i=0;i<listaEntidades.size();i++) {
 			listaEntidades.get(i).mover();
-			if(listaEntidades.get(i).getTipo()=="Infectado")
+			if(listaEntidades.get(i).isValiosa())
 				if(cooldownDisparoInfectados==10) {
 					generarDisparo(((Infectado)listaEntidades.get(i)).disparar());
 					cooldownDisparoInfectados=0;
@@ -226,7 +223,7 @@ public class Juego {
 				public void run() {
 					try {
 						int random = (int) Math.floor(Math.random()*listaEntidades.size());
-						if(listaEntidades.get(random).getTipo()=="Infectado") {
+						if(listaEntidades.get(random).isValiosa()) {
 							sonido = ((Infectado)listaEntidades.get(random)).getSonido();
 							clip = AudioSystem.getClip();
 							clip.open(AudioSystem.getAudioInputStream(new File(sonido)));
@@ -270,7 +267,7 @@ public class Juego {
 	public boolean checkearOleadaTerminada() {
 		boolean termino=true;
 		for(int i=0;i<listaEntidades.size() && termino;i++) {
-			if(listaEntidades.get(i).getTipo()=="Infectado")
+			if(listaEntidades.get(i).isValiosa())
 				termino=false;
 		}
 		

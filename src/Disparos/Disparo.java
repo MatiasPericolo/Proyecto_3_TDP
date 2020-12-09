@@ -14,6 +14,7 @@ public abstract class Disparo extends Entidad{
 		velocidad=vel;
 		this.daño=daño;
 		sprite=img;
+		valiosa=false;
 	}
 	
 	public int getCoordenadaX() {

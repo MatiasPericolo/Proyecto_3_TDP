@@ -22,12 +22,12 @@ public class Infectado extends Entidad{
 
 	
 	public Infectado(JLabel label) {
-		tipo="Infectado";
 		visitor=new VisitorInfectado(this);
 		cargaViral=100;
 		coordenadaX=((int) (Math.random()*720))-32;
 		estadoActual=new EstadoNormal(this);
 		this.label=label;
+		valiosa=true;
 	}
 
 	public DisparoInfectado disparar() {
@@ -98,4 +98,5 @@ public class Infectado extends Entidad{
 	public Estado recuperarEstado() {
 		return new EstadoNormal(this);
 	}
+	
 }
