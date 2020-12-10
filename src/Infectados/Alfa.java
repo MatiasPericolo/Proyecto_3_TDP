@@ -42,12 +42,10 @@ public class Alfa extends Infectado{
 		}
 	}
 	
-	public Estado recuperarEstado() {
-		Estado state;
+	public void recuperarEstado() {
 		if(cargaViral<=20)
-			state=new EstadoBerserk(this);
+			estadoActual=new EstadoBerserk(this);
 		else
-			state=new EstadoNormal(this);
-		return state;
+			estadoActual=new EstadoNormal(this);
 	}
 }

@@ -8,7 +8,7 @@ public class DisparoDull extends Disparo{
 	public DisparoDull(int x, int y,int vel, int daño,String img) {
 		super(x,y,vel,0,img);
 		
-	}
+	} 
 	
 	@Override
 	public void mover() {

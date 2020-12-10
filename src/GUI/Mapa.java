@@ -30,19 +30,6 @@ public class Mapa extends JFrame {
 	
 	protected Juego juego;
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Mapa frame = new Mapa(6);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
 	public Mapa(int dificultad) {
 		
 		juego=new Juego(this,dificultad);

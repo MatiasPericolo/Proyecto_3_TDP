@@ -113,8 +113,8 @@ public class Infectado extends Entidad{
 		return sonido;
 	}
 	
-	public Estado recuperarEstado() {
-		return new EstadoNormal(this);
+	public void recuperarEstado() {
+		estadoActual = new EstadoNormal(this);
 	}
 	
 	public int generarPremio() {

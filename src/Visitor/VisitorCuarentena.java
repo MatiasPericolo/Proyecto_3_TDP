@@ -35,7 +35,7 @@ public class VisitorCuarentena extends Visitor{
 			}
 		}
 		if(((Cuarentena)miEntidad).getTermino()) {
-			infectado.setEstadoActual(infectado.recuperarEstado());
+			infectado.recuperarEstado();
 		}
 		
 			

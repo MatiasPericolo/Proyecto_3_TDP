@@ -199,7 +199,7 @@ public class Juego {
 	}
 	
 	public void mover() {
-		for(int i=0;i<listaEntidades.size();i++) {
+		for(int i=1;i<listaEntidades.size();i++) {
 			listaEntidades.get(i).mover();
 			if(cooldownDisparoInfectados==30) {
 				generarDisparo(listaEntidades.get(i).disparar());
