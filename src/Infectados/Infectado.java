@@ -76,8 +76,9 @@ public class Infectado extends Entidad{
 		return estadoActual;
 	}
 
-	public void setEstadoActual(Estado estadoActual) {
-		this.estadoActual = estadoActual;
+	public void setEstadoActual(Estado estado) {
+		if(estadoActual.getPrioridad()<=estado.getPrioridad())
+			estadoActual = estado;
 	}
 
 	public int getCoordenadaX() {
@@ -116,4 +117,7 @@ public class Infectado extends Entidad{
 		return new EstadoNormal(this);
 	}
 	
+	public int generarPremio() {
+		return (((int) Math.floor(Math.random()*3))+1);
+	}
 }

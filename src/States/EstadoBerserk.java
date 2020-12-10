@@ -6,6 +6,7 @@ public class EstadoBerserk extends Estado{
 
 	public EstadoBerserk(Infectado infectado) {
 		super(infectado);
+		prioridad=1;
 	}
 	
 	public void mover() {
@@ -15,4 +16,7 @@ public class EstadoBerserk extends Estado{
 				miInfectado.getLabel().setBounds(miInfectado.getLabel().getX(),0,  miInfectado.getLabel().getWidth(), miInfectado.getLabel().getHeight());
 	}
 	
+	public String toString() {
+		return "Berserk";
+	}
 }

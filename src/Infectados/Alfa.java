@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import Arma.ArmaInfectado;
 import States.Estado;
@@ -27,9 +28,9 @@ public class Alfa extends Infectado{
 	public void recibirCura(int cura) {
 		super.recibirCura(cura);
 		if(cargaViral<=20 && (cargaViral+(cura/resistencia))>20) {
-			estadoActual=new EstadoBerserk(this);
-			//sprite="Sprites\\Personaje e Infectados\\InfectadoAlfaBerserk.gif";
-			//label.setIcon(new ImageIcon(sprite));
+			this.setEstadoActual(new EstadoBerserk(this));
+			sprite="Sprites\\Personaje e Infectados\\InfectadoAlfaBerserk.gif";
+			label.setIcon(new ImageIcon(sprite));
 			try {
 				Clip clip = AudioSystem.getClip();
 				clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\AlfaConvertido.wav")));

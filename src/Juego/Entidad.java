@@ -1,7 +1,8 @@
 package Juego;
 
 import javax.swing.JLabel;
-
+import Disparos.Disparo;
+import Disparos.DisparoDull;
 import Visitor.Visitor;
 
 public abstract class Entidad {
@@ -14,6 +15,7 @@ public abstract class Entidad {
 	public boolean isValiosa() {
 		return valiosa;
 	}
+	
 	public abstract void mover();
 	public abstract void destruir();
 	
@@ -42,4 +44,12 @@ public abstract class Entidad {
 	}
 	
 	public abstract void recibir(Visitor visitor);
+	
+	public int generarPremio() {
+		return 0;
+	}
+	
+	public Disparo disparar() {
+		return new DisparoDull(0,0,0,0,"0");
+	}
 }

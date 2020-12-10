@@ -118,33 +118,35 @@ public class Juego {
 
     }
 	
-	public void crearPremio(int x, int y) {
-		Premio premio;
-		int random = (int) Math.floor(Math.random()*3);
-		if(random == 0) {
-			premio=new Cuarentena(x,y,3000);
-		} else if(random == 1) {
-			premio=new SuperArma(x,y,3000);
-		}else {
-			premio=new Pocion(x,y);
+	public void crearPremio(int x, int y,int eleccion) {
+		if(eleccion!=0) {
+			Premio premio;
+			if(eleccion == 1) {
+				premio=new Cuarentena(x,y,3000);
+			} else if(eleccion == 2) {
+				premio=new SuperArma(x,y,3000);
+			}else {
+				premio=new Pocion(x,y);
+			}
+			
+			premio.setLabel(gui.crearLabel());
+			premio.getLabel().setBounds(premio.getCoordenadaX(),premio.getCoordenadaY(),50,50);
+			premio.getLabel().setIcon(new ImageIcon(premio.getSprite()));
+			gui.getContentPane().add(premio.getLabel(),0);
+			listaEntidades.add(premio);
+			listaPremios.add(premio);
 		}
-		
-		premio.setLabel(gui.crearLabel());
-		premio.getLabel().setBounds(premio.getCoordenadaX(),premio.getCoordenadaY(),50,50);
-		premio.getLabel().setIcon(new ImageIcon(premio.getSprite()));
-		gui.getContentPane().add(premio.getLabel(),0);
-		listaEntidades.add(premio);
-		listaPremios.add(premio);
-		
 	}
 
 	
 	public void generarDisparo(Disparo disparo) {
-		disparo.setLabel(gui.crearLabel());
-		disparo.getLabel().setBounds(disparo.getCoordenadaX(),disparo.getCoordenadaY(),20,22);
-		disparo.getLabel().setIcon(new ImageIcon(disparo.getSprite()));
-		gui.getContentPane().add(disparo.getLabel(),0);
-		listaEntidades.add(disparo);
+		if(disparo.getSprite()!="0") {
+			disparo.setLabel(gui.crearLabel());
+			disparo.getLabel().setBounds(disparo.getCoordenadaX(),disparo.getCoordenadaY(),20,22);
+			disparo.getLabel().setIcon(new ImageIcon(disparo.getSprite()));
+			gui.getContentPane().add(disparo.getLabel(),0);
+			listaEntidades.add(disparo);
+		}
 	}
 	
 	public boolean colisionan(JLabel label1,JLabel label2) {
@@ -163,16 +165,12 @@ public class Juego {
 					listaEntidades.get(j).recibir(listaEntidades.get(i).getVisitor());
 				
 				if(!listaEntidades.get(i).getLabel().isVisible()) {
-					if(listaEntidades.get(i).isValiosa()) {
-						crearPremio(listaEntidades.get(i).getLabel().getX(),listaEntidades.get(i).getLabel().getY());
-					}						
+					crearPremio(listaEntidades.get(i).getLabel().getX(),listaEntidades.get(i).getLabel().getY(),listaEntidades.get(i).generarPremio());					
 					listaEntidades.remove(i);
 					if(i==0)
 						finalizar(false);
 				} else if(!listaEntidades.get(j).getLabel().isVisible()) {
-					if(listaEntidades.get(j).isValiosa()) {
-						crearPremio(listaEntidades.get(j).getLabel().getX(),listaEntidades.get(j).getLabel().getY());
-					}
+					crearPremio(listaEntidades.get(j).getLabel().getX(),listaEntidades.get(j).getLabel().getY(),listaEntidades.get(j).generarPremio());
 					listaEntidades.remove(j);
 				}
 			}
@@ -203,18 +201,16 @@ public class Juego {
 	public void mover() {
 		for(int i=0;i<listaEntidades.size();i++) {
 			listaEntidades.get(i).mover();
-			if(listaEntidades.get(i).isValiosa())
-				if(cooldownDisparoInfectados==30) {
-					generarDisparo(((Infectado)listaEntidades.get(i)).disparar());
-					cooldownDisparoInfectados=0;
-				}else
-					cooldownDisparoInfectados++;
+			if(cooldownDisparoInfectados==30) {
+				generarDisparo(listaEntidades.get(i).disparar());
+				cooldownDisparoInfectados=0;
+			}else
+				cooldownDisparoInfectados++;
 		}
 		
 	}
 	
 	public void iniciarMusicaNivel(int nivel) {
-		System.out.println(nivel);
 		try {
 			clip = AudioSystem.getClip();
 			clip.open(AudioSystem.getAudioInputStream(new File("Sonidos\\MusicaNivel-" + nivel + ".wav")));

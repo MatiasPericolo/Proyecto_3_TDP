@@ -6,6 +6,7 @@ public class EstadoNormal extends Estado{
 
 	public EstadoNormal(Infectado infectado) {
 		super(infectado);
+		prioridad=1;
 	}
 	
 	public void mover() {

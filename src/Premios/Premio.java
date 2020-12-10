@@ -46,7 +46,7 @@ public class Premio extends Entidad {
 
 	public void mover() {
 		if(label.getY()<820)
-			label.setBounds(label.getX(),label.getY()+10, 199, 150);
+			label.setBounds(label.getX(),label.getY()+30, 199, 150);
 		else
 			destruir();
 	}
